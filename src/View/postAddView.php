@@ -1,6 +1,6 @@
 <?php
 
-$imgHeader = 'img/chouette_vol_640x420.png';
+$imgHeader = '../img/chouette_vol_640x420.png';
 $pageTitle = 'Ecrire';
 $subTitle = 'partager ses connaisances';
 
@@ -38,4 +38,4 @@ ob_start();?>
 
 $content = ob_get_clean();
 
-require ('src/View/template/default.php');
+require ('../src/View/template/default.php');

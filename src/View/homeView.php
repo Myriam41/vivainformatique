@@ -1,26 +1,40 @@
 <?php
 
-$imgHeader = 'img/chouette_vol_640x420.png';
+$imgHeader = '../img/chouette_vol_640x420.png';
 $pageTitle = 'Développez votre avenir';
-$subTitle = 'Un développeur pour vous aider';
+$subTitle = 'Myriam Stampers';
 
 // Page header little image
-$imglittle = '<img src="img/myr2.jpg"  alt="Photo du développeur"/>';
+$imglittle = '';
 
 ob_start();?>
 
-<div class = "container">
+<div class = "container-fluid">
     <div class = "row">
-        <div class = "col-lg-2 col-md-2">
-            <img src = "img/logo_Viva_technologie.png" alt="logo Viva Technologie"/>
+        <div class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+               <a class="nav-link" href="">Mon CV</a>
+               <img src="../img/myr2.jpg"  alt="Photo du développeur"/>
+               <a class="nav-link" href="index.php?page=postList">Articles</a>
         </div>
 
-        <div class = "col-lg-8 col-md-8">
-            <p> Un supertexte introductif à inventer </p>
-        </div>
-        <div class = "col-lg-2 col-md-2">
-            <p><a class="nav-link" href="index.php?page=postList">Articles</a></p>
-        </div>
+        <form class = "col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <legend> Un projet ? une question ? Envoyez-moi un message </legend>
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">email :</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message :</label>
+                    <input type="text" name="message" id="message" class="form-control">
+                </div>
+
+                <button>Envoyer</button>
+        </form>
+
     </div>
 </div>
 
@@ -28,4 +42,4 @@ ob_start();?>
 
 $content = ob_get_clean();
 
-require ('src/View/template/default.php');
+require ('../src/View/template/default.php');

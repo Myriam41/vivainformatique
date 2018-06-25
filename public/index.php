@@ -1,6 +1,6 @@
 <?php
 
-require_once'vendor/autoload.php';
+require_once'../vendor/autoload.php';
 
 use App\Controller\PostController;
 
@@ -14,7 +14,7 @@ if (isset($_GET['page'])) {
 // Routes
 // Home
 if ($p === 'home') {
-  require 'src/View/homeView.php';
+  require '../src/View/homeView.php';
 }
 
 // List of posts
@@ -32,12 +32,12 @@ if ($p === 'post') {
 
 //contact
 if ($p === 'contact') {
-    require 'src/View/contactView.php';
+    require '../src/View/contactView.php';
   }
   
 // Adding a post
 if ($p === 'postAdd') {
-    require 'src/View/postAddView.php';
+    require '../src/View/postAddView.php';
   }
 
 // Adding a comment

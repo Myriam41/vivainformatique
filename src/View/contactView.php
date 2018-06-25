@@ -1,8 +1,11 @@
 <?php
 
-$imgHeader = 'img/contact-bg.jpg';
+$imgHeader = '../img/contact-bg.jpg';
 $pageTitle = 'Contact';
 $subTitle = 'Envoyez un message';
+
+// Page header little image
+$imglittle = '';
 
 ob_start();?>
 
@@ -62,4 +65,4 @@ ob_start();?>
 
 $content = ob_get_clean();
 
-require ('src/View/template/default.php');
+require ('../src/View/template/default.php');

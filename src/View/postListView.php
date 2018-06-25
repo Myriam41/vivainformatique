@@ -1,6 +1,6 @@
 <?php
 
-$imgHeader = 'img/chouette_vol_640x420.png';
+$imgHeader = '../img/chouette_vol_640x420.png';
 $pageTitle = '';
 $subTitle = 'Hier, Aujourd\'hui, Demain';
 
@@ -42,4 +42,4 @@ foreach($posts as $post){?>
 
 $content = ob_get_clean();
 
-require ('src/View/template/default.php');
+require ('../src/View/template/default.php');

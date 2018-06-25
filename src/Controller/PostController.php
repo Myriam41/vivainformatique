@@ -20,7 +20,7 @@ class PostController
     {
         $postRepository = new PostRepository();
         $posts = $postRepository->getByLimit();
-        require 'src/View/postListView.php';
+        require '../src/View/postListView.php';
     }
     
     /**
@@ -41,6 +41,6 @@ class PostController
         if (!empty($postId)) {
             $comments->getByPostId($postId);
         }
-        require 'src/View/postView.php';
+        require '../src/View/postView.php';
     }
 }

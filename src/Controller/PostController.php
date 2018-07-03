@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use App\Repository\Commentrepository;
-use App\Repository\UserRepository;
+use App\Entity\User;
 
 /**
  * Class PostController
@@ -20,6 +20,11 @@ class PostController
     {
         $postRepository = new PostRepository();
         $posts = $postRepository->getByLimit();
+
+        $userid = $posts->getUserId();
+        $user = new User($userId);
+        $author = $user->getName();
+
         require '../src/View/postListView.php';
     }
     
@@ -41,5 +46,18 @@ class PostController
             $comments->getByPostId($postId);
         }
         require '../src/View/postView.php';
+    }
+
+    /**
+     * Get author of a post
+     * @var $author
+     */
+    public function author()
+    {
+        $userId = $_post['userId'];
+        $userRepository = new UserRepository();
+        if(!empty($userId)){
+            $author = $userRepository->getAuthor();
+        }
     }
 }

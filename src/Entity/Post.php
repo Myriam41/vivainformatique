@@ -87,9 +87,9 @@ class Post
 
             if (isset($data['userId'])) {
                 /**
-                 * hydration author
+                 * hydration userId
                  */
-                $this->setAuthor($data['userId']);
+                $this->setUserId($data['userId']);
             }
 
             if (isset($data['introduction'])) {

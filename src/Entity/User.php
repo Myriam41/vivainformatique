@@ -6,7 +6,7 @@ namespace App\Entity;
  * Class User
  */
 
-class Post
+class User
 {
     /**
      * @var int primary key auto incremented

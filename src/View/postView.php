@@ -15,7 +15,7 @@ ob_start();
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <span class="post-meta">Posté par 
-            <?= htmlspecialchars($post->getAuthor()); ?> le 
+            <?= htmlspecialchars($author->getName()); ?> le 
             <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
 
             <article> <?= htmlspecialchars($post->getContent()); ?></article>

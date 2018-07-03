@@ -27,7 +27,7 @@ foreach($posts as $post){?>
             </h3>
             </a>
             <span class="post-meta">Posté par 
-            <?= htmlspecialchars($post->getAuthor()); ?> le 
+            <?= htmlspecialchars($auteur->getName()); ?> le 
             <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
 
             <a href="index.php?id=<?= $post->getId()?>&amp;page=post">Lire l'article</a>

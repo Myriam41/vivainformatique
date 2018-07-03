@@ -30,9 +30,8 @@ foreach($posts as $post){?>
             <?= htmlspecialchars($post->getAuthor()); ?> le 
             <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
 
-            <article> <?= htmlspecialchars($post->getContent()); ?></article>
+            <a href="index.php?id=<?= $post->getId()?>&amp;page=post">Lire l'article</a>
         </div>
-
         </div>
     </div>
     </div>

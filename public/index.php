@@ -3,6 +3,7 @@
 require_once'../vendor/autoload.php';
 
 use App\Controller\PostController;
+use App\Controller\FormController;
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
@@ -34,6 +35,15 @@ if ($p === 'post') {
 if ($p === 'contact') {
     require '../src/View/contactView.php';
   }
+
+//sen message
+if ($p === 'formHome') {
+  $formController = new FormController();
+  $formController->sendMessage();
+  
+  require '../src/View/homeView.php';
+
+}
   
 // Adding a post
 if ($p === 'postAdd') {

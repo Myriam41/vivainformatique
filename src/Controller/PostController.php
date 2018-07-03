@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use App\Repository\Commentrepository;
+use App\Repository\UserRepository;
 
 /**
  * Class PostController
@@ -13,7 +14,6 @@ class PostController
 {
     /**
      * Get the last 10 posts
-     *
      * @var $posts
      */
     public function listPosts()
@@ -24,8 +24,7 @@ class PostController
     }
     
     /**
-     * La function crée des occurences pour obtenir un article avec ses commentaires
-     *
+     * Get one article with comments
      * @var $article and contents
      */
     public function post()

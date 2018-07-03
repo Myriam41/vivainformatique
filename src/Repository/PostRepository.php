@@ -20,7 +20,7 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
     
-        $req = $db->prepare('SELECT * FROM post ORDER BY createdAt LIMIT 0, 10');
+        $req = $db->prepare('SELECT * FROM post ORDER BY createdAt DESC LIMIT 0, 10');
         $req->execute();
         $posts = [];
 

@@ -12,12 +12,12 @@ ob_start();?>
 <div class = "container-fluid">
     <div class = "row">
         <div class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-               <a class="nav-link" href="">Mon CV</a>
+               <a class="nav-link" target="_blank" href="../doc/cv 2018 informatique.pdf">Mon CV</a>
                <img src="../img/myr2.jpg"  alt="Photo du développeur"/>
                <a class="nav-link" href="index.php?page=postList">Articles</a>
         </div>
 
-        <form class = "col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <form class = "col-lg-8 col-md-8 col-sm-12 col-xs-12" method="post" action="index.php?page=formHome" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
             <legend> Un projet ? une question ? Envoyez-moi un message </legend>
                 <div class="form-group">
                     <label for="name">Nom :</label>
@@ -32,7 +32,7 @@ ob_start();?>
                     <input type="text" name="message" id="message" class="form-control">
                 </div>
 
-                <button>Envoyer</button>
+                <button type="submit">Envoyer</button>
         </form>
 
     </div>

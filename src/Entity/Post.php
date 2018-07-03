@@ -29,9 +29,9 @@ class Post
     private $content;
 
     /**
-     * @var string post's author
+     * @var string post's userId
      */
-    private $author;
+    private $userId;
 
     /**
      * @var int post's creation date
@@ -85,11 +85,11 @@ class Post
                 $this->setContent($data['content']);
             }
 
-            if (isset($data['author'])) {
+            if (isset($data['userId'])) {
                 /**
                  * hydration author
                  */
-                $this->setAuthor($data['author']);
+                $this->setAuthor($data['userId']);
             }
 
             if (isset($data['introduction'])) {
@@ -178,19 +178,19 @@ class Post
     }
 
     /**
-     * @return string author
+     * @return string userId
      */
-    public function getAuthor()
+    public function getUserId()
     {
-        return $this->author;
+        return $this->userId;
     }
 
     /**
-     * @param string $author
+     * @param string $userId
      */
-    public function setAuthor($author)
+    public function setUserId($userId)
     {
-        $this->author = $author;
+        $this->userId = $userId;
     }
 
     /**

@@ -13,6 +13,7 @@ ob_start();
 <p><a class="nav-link" href="index.php?page=postAdd">Ajouter un article</a></p>
 <?php
 //!-- Main Content last 10 posts--
+var_dump($posts);
 foreach($posts as $post){?>
     <div class="container">
     <div class="row">
@@ -20,15 +21,19 @@ foreach($posts as $post){?>
         <div class="post-preview">
             <a href="index.php?id=<?= $post->getId()?>&amp;page=post">
             <h2 class="post-title">
+            <?= var_dump($post->getName)?>
                 <?= htmlspecialchars($post->getTitle()); ?>
             </h2>
             <h3 class="post-subtitle">
-                <?= htmlspecialchars($post->getIntroduction());?>
+                <?= htmlspecialchars($post->getIntroduction()); ?>
             </h3>
             </a>
-            <span class="post-meta">Posté par 
-            <?= htmlspecialchars($auteur->getName()); ?> le 
+            <span class="post-meta">Posté par
+                <?= htmlspecialchars($user->getName());?>                 } 
+             le 
             <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
+
+            <? var_dump($post->getName)?>
 
             <a href="index.php?id=<?= $post->getId()?>&amp;page=post">Lire l'article</a>
         </div>

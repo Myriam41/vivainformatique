@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Model\Connect;
 use App\Entity\Post;
+use App\Entity\User;
+use PDO;
 
 /**
  * Class PostRepository extend Connect
@@ -20,17 +22,18 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
     
-        $req = $db->prepare('SELECT * FROM post ORDER BY createdAt DESC LIMIT 0, 10');
+        $reqSelect = 'SELECT p.*, u.*';
+        $reqFrom = ' FROM post p LEFT JOIN user u';
+        $reqOn = ' ON p.userId = u.Id';
+        $reqLimit = ' ORDER BY createdAt DESC LIMIT 0, 10';
+        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqLimit);
         $req->execute();
         $posts = [];
 
-        while ($dataRaw = $req->fetch()) {
-            $posts[] = new Post($dataRaw);
-        }
+        $req = $posts->fetch(\PDO::FETCH_ASSOC);
        
         $req->closeCursor();
         return $posts;
-
     }
     
     /**

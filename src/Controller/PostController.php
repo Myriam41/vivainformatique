@@ -21,10 +21,6 @@ class PostController
         $postRepository = new PostRepository();
         $posts = $postRepository->getByLimit();
 
-        $userid = $posts->getUserId();
-        $user = new User($userId);
-        $author = $user->getName();
-
         require '../src/View/postListView.php';
     }
     

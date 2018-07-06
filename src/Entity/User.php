@@ -69,7 +69,7 @@ class User
             }
              
             if (isset($data['name'])) {
-                $this->setTName($data['name']);
+                $this->setName($data['name']);
             }
             
             if (isset($data['password'])) {

@@ -85,7 +85,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/myriam-stampers-8aa857150">
+                <a href="https://www.linkedin.com/in/myriam-stampers-8aa857150" target="_blank">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -93,7 +93,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://www.facebook.com/profile.php?id=100020224839778">
+                <a href="https://www.facebook.com/profile.php?id=100020224839778" target="_blank">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -101,7 +101,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/">
+                <a href="https://github.com/" target="_blank">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>

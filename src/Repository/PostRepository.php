@@ -22,18 +22,21 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
     
-        $reqSelect = 'SELECT p.*, u.*';
-        $reqFrom = ' FROM post p LEFT JOIN user u';
-        $reqOn = ' ON p.userId = u.Id';
-        $reqLimit = ' ORDER BY createdAt DESC LIMIT 0, 10';
+        $reqSelect = 'SELECT *';
+        $reqFrom = ' FROM post INNER JOIN user';
+        $reqOn = ' ON post.userId = user.id';
+        $reqLimit = ' ORDER BY post.createdAt DESC LIMIT 0, 10';
         $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqLimit);
         $req->execute();
-        $posts = [];
+        $posts=[];
 
-        $req = $posts->fetch(\PDO::FETCH_ASSOC);
-       
+        while ($data = $req->fetch())
+        { 
+            $datas[]= $data;
+        }
+
         $req->closeCursor();
-        return $posts;
+        return $datas;
     }
     
     /**

@@ -13,29 +13,28 @@ ob_start();
 <p><a class="nav-link" href="index.php?page=postAdd">Ajouter un article</a></p>
 <?php
 //!-- Main Content last 10 posts--
-var_dump($posts);
-foreach($posts as $post){?>
+var_dump($datas);
+var_dump($data);
+foreach($datas as $data){?>
     <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
-            <a href="index.php?id=<?= $post->getId()?>&amp;page=post">
+            <a href="index.php?id=<?= $data->getId()?>&amp;page=post">
             <h2 class="post-title">
-            <?= var_dump($post->getName)?>
-                <?= htmlspecialchars($post->getTitle()); ?>
+            <?= var_dump($data->getName)?>
+                <?= htmlspecialchars($data->getTitle()); ?>
             </h2>
             <h3 class="post-subtitle">
-                <?= htmlspecialchars($post->getIntroduction()); ?>
+                <?= htmlspecialchars($data->getIntroduction()); ?>
             </h3>
             </a>
             <span class="post-meta">Posté par
-                <?= htmlspecialchars($user->getName());?>                 } 
+                <?= htmlspecialchars($data->getName());?>                 } 
              le 
-            <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
+            <?= htmlspecialchars($data->getCreatedAt()); ?></span></br>
 
-            <? var_dump($post->getName)?>
-
-            <a href="index.php?id=<?= $post->getId()?>&amp;page=post">Lire l'article</a>
+            <a href="index.php?id=<?= $data->getId()?>&amp;page=post">Lire l'article</a>
         </div>
         </div>
     </div>

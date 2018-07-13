@@ -1,9 +1,14 @@
 <?php
+session_start();
+
+$_SESSION['name'];
+$_SESSION['connect'] = 0;
 
 require_once'../vendor/autoload.php';
 
 use App\Controller\PostController;
 use App\Controller\FormController;
+use App\Entity\Log;
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
@@ -36,7 +41,7 @@ if ($p === 'contact') {
     require '../src/View/contactView.php';
   }
 
-//sen message
+//send message
 if ($p === 'formHome') {
   $formController = new FormController();
   $formController->sendMessage();
@@ -50,6 +55,11 @@ if ($p === 'postAdd') {
     require '../src/View/postAddView.php';
   }
 
+//administration
+if ($p === 'admin') {
+  require '../src/View/administrationView.php';
+}
+
 // Adding a comment
 
 // Change a post
@@ -57,4 +67,10 @@ if ($p === 'postAdd') {
 // Change a comment
 
 // Identification
+
+//Registration
+if ($p === 'login') {
+  require '../src/View/registrationView.php';
+}
+
 

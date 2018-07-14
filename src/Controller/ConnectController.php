@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ConnectRepository;
+
 /**
  * Class ConnectController
  */
@@ -10,11 +12,29 @@ class ConnectController
 {
     public function hach()
     {
-        $pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+        $pass_hache = password_hash($_SESSION['pass'], PASSWORD_DEFAULT);
+    }
+
+    public function verifPseudo()
+    {
+        $user = NEW ConnectRepository();
+        $user->getUser();
+        if(!$user)
+        {
+            $newUser = NEW ConnectRepository();
+            $newUser->newUser();
+        }
+
+        else 
+        {
+            echo 'Merci de choisir un autre pseudo';
+        }
+        
     }
 
     public function verifPass()
     {
+        //récupérer la recherche en fonction du name et vérifier le password
         $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
 
         if (!$resultat)
@@ -38,7 +58,7 @@ class ConnectController
         }
     }
 
-    public function deconnect()
+    public function offline()
     {
         // Suppression des variables de session et de la session
         $_SESSION = array();

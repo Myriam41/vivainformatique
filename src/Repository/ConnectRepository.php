@@ -5,11 +5,11 @@ namespace App\Repository;
 use App\Model\Connect;
 
 /**
- * Class ConnectRepository extend Connect
+ * Class ConnectRepository extend connect
  *
  */
 
-class ConnectRepository extends Log
+class ConnectRepository extends Connect
 {
     /**
      * function New user INSERT
@@ -18,13 +18,13 @@ class ConnectRepository extends Log
     {
     $db = $this->getDb();
 
-    $reqInsert = 'INSERT INTO user(name, password, createdAt, email)' ;
-    $reqValues = 'VALUES(:name, :password, :createdAt, :email)';
+    $reqInsert = 'INSERT INTO user(pseudo, pass, createdAt, email)' ;
+    $reqValues = 'VALUES(:pseudo, :pass, :createdAt, :email)';
     $req = $db->prepare($reqInsert . $reqValues);
     $req->execute(array(
-        'name' => $name,
-        'password' => $pass_hache,
-        'email' => $email));
+        'pseudo' => $_SESSION['pseudo'],
+        'pass' => $_SESSION['pass'],
+        'email' => $_SESSION['email']));
 }
     /**
      * function SELECT user
@@ -34,12 +34,11 @@ class ConnectRepository extends Log
     $db = $this->getDb();
 
     $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
-
     $req->execute(array(
+    'pseudo' => $_SESSION['pseudo']));
+    $user = $req->fetch();
 
-    'pseudo' => $pseudo));
-
-    $resultat = $req->fetch();
-    
+    return $user;
     }
+
 }

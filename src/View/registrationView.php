@@ -10,11 +10,11 @@ $imglittle = '';
 ob_start();?>
 <div class="container-fluid">
     <div class = "row">
-        <form class = "formlog col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-12 col-xs-12" method="post" action="index.php?page=formHome" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
+        <form class = "formlog col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-12 col-xs-12" method="post" action="index.php?page=formAddUser" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
             <legend> Bulletin d'inscription</legend>
                 <div class="form-group">
-                    <label for="name">Nom :</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <label for="pseudo">Pseudo :</label>
+                    <input type="text" name="pseudo" id="pseudo" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="email">email :</label>
@@ -32,11 +32,11 @@ ob_start();?>
                 <button type="submit">Envoyer</button>
         </form>
    
-        <form class="formlog col-lg-5 col-md-5 col-sm-12 col-xs-12" method="post" action="index.php?page=formHome" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
+        <form class="formlog col-lg-5 col-md-5 col-sm-12 col-xs-12" method="post" action="index.php?page=login" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
             <legend> Déjà inscrit</legend>
                 <div class="form-group">
-                    <label for="name">Nom :</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <label for="pseudo">Pseudo :</label>
+                    <input type="text" name="pseudo" id="pseudo" class="form-control">
                 </div>
             <div class="form-group">
                 <label for="email">email :</label>

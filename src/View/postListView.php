@@ -13,8 +13,6 @@ ob_start();
 <p><a class="nav-link" href="index.php?page=postAdd">Ajouter un article</a></p>
 <?php
 //!-- Main Content last 10 posts--
-var_dump($datas);
-var_dump($data);
 foreach($datas as $data){?>
     <div class="container">
     <div class="row">

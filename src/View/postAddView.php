@@ -11,7 +11,7 @@ ob_start();?>
 
   <!-- Main Content -->
   <div class="well">
-  <form cible="Index.php?action=addpost" action="post" class="col-lg-10">
+  <form action="index.php?page=postAdd" method="post" class="col-lg-10">
     <legend>Ecrire un nouvel article</legend>
     <fieldset>
       <div class="form group">

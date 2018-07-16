@@ -19,7 +19,7 @@ class ConnectRepository extends Connect
     $db = $this->getDb();
 
     $reqInsert = 'INSERT INTO user(pseudo, pass, createdAt, email)' ;
-    $reqValues = 'VALUES(:pseudo, :pass, :createdAt, :email)';
+    $reqValues = 'VALUES(:pseudo, :pass, now(), :email)';
     $req = $db->prepare($reqInsert . $reqValues);
     $req->execute(array(
         'pseudo' => $_SESSION['pseudo'],
@@ -33,12 +33,12 @@ class ConnectRepository extends Connect
     {
     $db = $this->getDb();
 
-    $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+    $req = $db->prepare('SELECT COUNT(pseudo) FROM user WHERE pseudo = :pseudo');
     $req->execute(array(
     'pseudo' => $_SESSION['pseudo']));
-    $user = $req->fetch();
+    $isAvailable = $req->fetch();
 
-    return $user;
+    return $isAvailable;
     }
 
 }

@@ -10,29 +10,32 @@ $imglittle = '';
 ob_start();
 
 ?>
-<p><a class="nav-link" href="index.php?page=postAdd">Ajouter un article</a></p>
+<p><a class="nav-link" href="index.php?page=postNew">Ajouter un article</a></p>
 <?php
 //!-- Main Content last 10 posts--
-foreach($datas as $data){?>
+var_dump($posts);
+foreach($posts as $post){?>
     <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
-            <a href="index.php?id=<?= $data->getId()?>&amp;page=post">
+            <a href="index.php?id=<?= $post->getId()?>&amp;page=post">
             <h2 class="post-title">
-            <?= var_dump($data->getName)?>
-                <?= htmlspecialchars($data->getTitle()); ?>
+            <?= var_dump($post->getName)?>
+                <?= htmlspecialchars($post->getTitle()); ?>
             </h2>
             <h3 class="post-subtitle">
-                <?= htmlspecialchars($data->getIntroduction()); ?>
+                <?= htmlspecialchars($post->getIntroduction()); ?>
             </h3>
             </a>
             <span class="post-meta">Posté par
-                <?= htmlspecialchars($data->getName());?>                 } 
+                <?= htmlspecialchars($user->getName());?>                 } 
              le 
-            <?= htmlspecialchars($data->getCreatedAt()); ?></span></br>
+            <?= htmlspecialchars($post->getCreatedAt()); ?></span></br>
 
-            <a href="index.php?id=<?= $data->getId()?>&amp;page=post">Lire l'article</a>
+            <? var_dump($post->getName)?>
+
+            <a href="index.php?id=<?= $post->getId()?>&amp;page=post">Lire l'article</a>
         </div>
         </div>
     </div>

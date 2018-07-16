@@ -56,4 +56,10 @@ class PostController
             $author = $userRepository->getAuthor();
         }
     }
+
+    public function newPost()
+    {
+        $addPost = new PostRepository();
+        $addPost->addPost();
+    }
 }

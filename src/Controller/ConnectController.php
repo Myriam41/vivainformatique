@@ -18,8 +18,10 @@ class ConnectController
     public function verifPseudo()
     {
         $user = NEW ConnectRepository();
-        $user->getUser();
-        if(!$user)
+    
+        $isAvailable = $user->getUser();
+        
+        if(intval($isAvailable[0]) == 0)
         {
             $newUser = NEW ConnectRepository();
             $newUser->newUser();

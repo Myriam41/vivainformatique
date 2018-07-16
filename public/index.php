@@ -50,10 +50,22 @@ if ($p === 'formHome') {
 
 }
   
-// Adding a post
-if ($p === 'postAdd') {
+// Display pospostAddView
+if ($p === 'postNew') {
     require '../src/View/postAddView.php';
   }
+
+// Add Post
+if ($p === 'postAdd') {
+  $_SESSION['title'] = $_POST['title'];
+  $_SESSION['introduction'] = $_POST['introduction'];
+  $_SESSION['content'] = $_POST['content'];
+  $_SESSION['userId']= 1;
+
+  $newPost = new PostController;
+  $newPost->newPost();
+  require '../src/View/postListView.php';
+}
 
 //administration
 if ($p === 'admin') {
@@ -107,7 +119,7 @@ if ($p === 'formAddUser') {
   }
 
   //si les mots de passes sont identiques
-  if ($_SESSION['pass'] = $_SESSION['confPass'] ) {
+  if ($_SESSION['pass'] === $_SESSION['confPass'] ) {
       //data processing
       $pass_hache= new ConnectController();
       $pass_hache->hach();

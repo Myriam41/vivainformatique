@@ -69,6 +69,7 @@ class PostRepository extends Connect
      */
     public function allPost()
     {
+
     }
 
     /**
@@ -76,6 +77,19 @@ class PostRepository extends Connect
      */
     public function addPost()
     {
+        $db = $this->getDb();
+
+        $reqInsert = 'INSERT INTO post';
+        $reqCol = '(title, introduction, content, createdAt, userId)';
+        $reqValues = ' VALUES(:title, :introduction, :content, NOW() , :userId)';
+        $req = $db->prepare($reqInsert . $reqCol . $reqValues);
+        $req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
+        $req->bindParam(':introduction', $_SESSION['introduction'], \PDO::PARAM_STR);
+        $req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
+        $req->bindParam(':userId', $_SESSION['userId'], \PDO::PARAM_INT);
+
+        $req->execute();
+        
     }
 
     /**

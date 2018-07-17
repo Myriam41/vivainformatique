@@ -20,16 +20,21 @@ class ConnectController
         $user = NEW ConnectRepository();
     
         $isAvailable = $user->getUser();
-        
+
+        // Si aucun pseudo existe alors création du nouvel utilisateur
+        // intval retourne 0 si le tableau est vide et 1 s'il est rempli. Pas utilisable pour des objets.
         if(intval($isAvailable[0]) == 0)
         {
             $newUser = NEW ConnectRepository();
             $newUser->newUser();
+            // faire valider l'email
+        
         }
 
         else 
         {
-            echo 'Merci de choisir un autre pseudo';
+            ?> <script> alert("Merci de choisir un autre pseudo")</script>
+            <?php
         }
         
     }
@@ -74,6 +79,9 @@ class ConnectController
 
     public function login()
     {
+        //verification of pseudo and pass
+        $connectRepository = NEW ConnectRepository;
+        $user = $connectRepository->getUser();
 
     }
 }

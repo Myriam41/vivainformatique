@@ -20,7 +20,6 @@ class PostController
     {
         $postRepository = new PostRepository();
         $posts = $postRepository->getByLimit();
-
         require '../src/View/postListView.php';
     }
     
@@ -29,10 +28,9 @@ class PostController
      * @var $article and contents
      */
     public function post()
-    {
-        $postId = $_GET['id'];
+    {       
         $postRepository = new PostRepository();
-
+        $postId = $_GET['id'];
         if (!empty($postId)) {
             $post = $postRepository->getOneById($postId);
         }
@@ -53,7 +51,7 @@ class PostController
         $userId = $_post['userId'];
         $userRepository = new UserRepository();
         if(!empty($userId)){
-            $author = $userRepository->getAuthor();
+           $author = $userRepository->getAuthor();
         }
     }
 

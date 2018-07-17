@@ -29,7 +29,7 @@ class ConnectRepository extends Connect
     /**
      * function SELECT user
      */
-    public function getUser()
+    public function verifPseudo()
     {
     $db = $this->getDb();
 
@@ -39,6 +39,19 @@ class ConnectRepository extends Connect
     $isAvailable = $req->fetch();
 
     return $isAvailable;
+    }
+
+    public function getUser()
+    {
+    $db = $this->getDb();
+
+    $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo, pass = :pass');
+    $req->execute(array(
+    'pseudo' => $_SESSION['pseudo'],
+    'pass' => $_SESSION['pass']));
+    $user = $req->fetch();
+
+    return $user;
     }
 
 }

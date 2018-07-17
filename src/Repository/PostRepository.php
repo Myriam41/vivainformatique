@@ -22,21 +22,22 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
     
-        $reqSelect = 'SELECT *';
-        $reqFrom = ' FROM post INNER JOIN user';
-        $reqOn = ' ON post.userId = user.id';
-        $reqLimit = ' ORDER BY post.createdAt DESC LIMIT 0, 10';
+        $reqSelect = 'SELECT p.id AS post_id, 
+        p.title, p.introduction, p.createdAt, user.pseudo';
+        $reqFrom = ' FROM post AS p INNER JOIN user';
+        $reqOn = ' ON p.userId = user.id';
+        $reqLimit = ' ORDER BY p.createdAt DESC LIMIT 0, 10';
         $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqLimit);
         $req->execute();
         $posts=[];
 
         while ($data = $req->fetch())
         { 
-            $datas[]= $data;
+            $posts[]= $data;
         }
 
         $req->closeCursor();
-        return $datas;
+        return $posts;
     }
     
     /**
@@ -48,18 +49,19 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
 
-        $articleId = $_GET['id'];
-
+        $postId = $_GET['id'];
         $reqSelect = 'SELECT *';
-        $reqFrom = ' FROM post';
-        $reqWhere = ' WHERE id = :postId';
-        $req = $db->prepare($reqSelect . $reqFrom . $reqWhere);
-        $req->bindParam(':postId', $articleId, \PDO::PARAM_INT);
+        $reqFrom = ' FROM post INNER JOIN user';
+        $reqOn = ' ON post.userId = user.id';
+        $reqWhere = ' WHERE post.id = :postId';
+        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere);
+        $req->bindParam(':postId', $postId, \PDO::PARAM_INT);
         $req->execute();
+        $post=[];
         
-        $data = $req->fetch();
-        $post = new Post($data);
-
+        while($data = $req->fetch()){
+            $post[] = $data;
+        }
         $req->closeCursor();
         return $post;
     }

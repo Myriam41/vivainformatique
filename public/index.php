@@ -73,14 +73,16 @@ if ($p === 'admin') {
 
 // Identification
 if ($p === 'login') {
-  if($_SESSION['connect'] = 0)
+  if($_SESSION['connect'] === 0)
   {
     require '../src/View/registrationView.php';
   }
   
-  if($_SESSION['connect'] = 1)
+  if($_SESSION['connect'] === 1)
   {
     $_SESSION['connect'] = 0;
+    ?> <script>alert('Vous êtes déconnecté')</script> <?php
+    require '../src/View/home.php';
   }
 }
 
@@ -89,7 +91,7 @@ if ($p === 'formLogin') {
   //Data reception
   $_SESSION['pseudo']= htmlspecialchars($_POST['pseudo']);
   $_SESSION['pass'] = htmlspecialchars($_POST['pass']);
-
+  
   //Vérifier qu'aucun champs est vide
   if(!$_SESSION['pseudo'])
   {
@@ -105,7 +107,8 @@ if ($p === 'formLogin') {
 
   //vérification du pseudo et du mot de passe et passage en mode connecté
   $verifPseudo= new ConnectController();
-  $verifPseudo->verifPseudo();
+  $verifPseudo->Login();
+  require '../src/View/homeView.php';
 
 }
 
@@ -146,13 +149,14 @@ if ($p === 'formAddUser') {
   if ($_SESSION['pass'] === $_SESSION['confPass'] ) {
       //data processing
       $pass_hache= new ConnectController();
-      $pass_hache->hach();
+      $_SESSION['pass']=$pass_hache->hach();
 
       // Verification of the free pseudo. If ok add new user
-      $verifPseudo= new ConnectController();
-      $verifPseudo->verifPseudo();
+      $existPseudo= new ConnectController();
+      $existPseudo->existPseudo();
 
-      $_SESSION['pass']=$pass_hache;
+      require '../src/View/homeView.php';
+     
   }
 
   else

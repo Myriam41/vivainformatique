@@ -99,7 +99,14 @@
                 </a>
               </li>
             </ul>
+
+            <?php 
+            if($_SESSION['status']=='administrateur'){
+            ?>
             <a class = "admin" href="index.php?page=admin">admin</a>
+            <?php
+            }
+            ?>
 
             <p class="copyright text-muted">Copyright &copy; Myriam 2018</p>
           </div>

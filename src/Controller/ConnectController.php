@@ -13,12 +13,12 @@ class ConnectController
     public function hach()
     {
         $pass_hache = password_hash($_SESSION['pass'], PASSWORD_DEFAULT);
+        return $pass_hache;
     }
 
-    public function verifPseudo()
+    public function existPseudo()
     {
-        $user = NEW ConnectRepository();
-    
+        $user = NEW ConnectRepository();   
         $isAvailable = $user->getUser();
 
         // Si aucun pseudo existe alors création du nouvel utilisateur
@@ -28,7 +28,6 @@ class ConnectController
             $newUser = NEW ConnectRepository();
             $newUser->newUser();
             // faire valider l'email
-        
         }
 
         else 
@@ -39,12 +38,16 @@ class ConnectController
         
     }
 
-    public function verifPass()
+    public function Login()
     {
-        //récupérer la recherche en fonction du name et vérifier le password
-        $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
+        // search of the user and his password
+        $connectRepository = NEW ConnectRepository;
+        $user = $connectRepository->getUser();
 
-        if (!$resultat)
+        //récupérer la recherche en fonction du name et vérifier le password
+        $isPasswordCorrect = password_verify($_SESSION['pass'], $user['pass']);
+
+        if (!$user)
         {
             echo 'Mauvais identifiant ou mot de passe !';
         }
@@ -52,11 +55,10 @@ class ConnectController
         else
         {
             if ($isPasswordCorrect) {
-                session_start();
-                $_SESSION['id'] = $resultat['id'];
-                $_SESSION['pseudo'] = $pseudo;
-
-                echo 'Vous êtes connecté !';
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['pseudo'] = $user['pseudo'];
+                $_SESSION['status'] = $user['status'];
+                $_SESSION['connect'] = 1;          
             }
 
             else {
@@ -75,13 +77,5 @@ class ConnectController
         // Suppression des cookies de connexion automatique
         setcookie('login', '');
         setcookie('pass_hache', '');
-    }
-
-    public function login()
-    {
-        //verification of pseudo and pass
-        $connectRepository = NEW ConnectRepository;
-        $user = $connectRepository->getUser();
-
     }
 }

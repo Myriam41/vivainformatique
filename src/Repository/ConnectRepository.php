@@ -18,18 +18,22 @@ class ConnectRepository extends Connect
     {
     $db = $this->getDb();
 
+    $pseudo  =$_SESSION['pseudo'];
+    $pass = $_SESSION['pass'];
+    $email = $_SESSION['email'];
+
     $reqInsert = 'INSERT INTO user(pseudo, pass, createdAt, email)' ;
     $reqValues = 'VALUES(:pseudo, :pass, now(), :email)';
     $req = $db->prepare($reqInsert . $reqValues);
     $req->execute(array(
-        'pseudo' => $_SESSION['pseudo'],
-        'pass' => $_SESSION['pass'],
-        'email' => $_SESSION['email']));
+        'pseudo' => $pseudo,
+        'pass' => $pass,
+        'email' => $email));        
 }
     /**
      * function SELECT user
      */
-    public function verifPseudo()
+    public function existPseudo()
     {
     $db = $this->getDb();
 
@@ -45,10 +49,9 @@ class ConnectRepository extends Connect
     {
     $db = $this->getDb();
 
-    $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo, pass = :pass');
+    $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
     $req->execute(array(
-    'pseudo' => $_SESSION['pseudo'],
-    'pass' => $_SESSION['pass']));
+    'pseudo' => $_SESSION['pseudo']));
     $user = $req->fetch();
 
     return $user;

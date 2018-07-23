@@ -9,7 +9,6 @@ foreach ($post as $article) {
     $imglittle = '';
 
     ob_start();
-    print_r($post);
 
     //!-- Main Content --?>
     <div class="container">

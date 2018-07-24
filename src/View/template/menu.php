@@ -22,7 +22,7 @@ if ($_SESSION['connect'] === 1){
             <a class="nav-link" href="index.php?page=login">Enregistrement</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?page=connect">Déconnection</a>
+            <a class="nav-link" href="index.php?page=login">Déconnexion</a>
         </li>
         </ul>
     </div>
@@ -47,7 +47,7 @@ if ($_SESSION['connect'] === 0){
                 <a class="nav-link" href="index.php?page=contact">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?page=login">Connection</a>
+                <a class="nav-link" href="index.php?page=login">Connexion</a>
             </li>
             </ul>
         </div>

@@ -8,7 +8,6 @@ $subTitle = 'Hier, Aujourd\'hui, Demain';
 $imglittle = '';
 
 ob_start();
-
 ?>
 <p><a class="nav-link" href="index.php?page=postNew">Ajouter un article</a></p>
 <?php

@@ -2,13 +2,15 @@
 session_start();
 
 $_SESSION['connect'] = 0;
+$_SESSION['status'] = '';
 
 require_once'../vendor/autoload.php';
 
 use App\Controller\PostController;
 use App\Controller\FormController;
 use App\Controller\ConnectController;
-use App\Entity\Log;
+use App\Controller\CommentController;
+
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
@@ -79,8 +81,7 @@ if ($p === 'login') {
   }
   
   if($_SESSION['connect'] === 1)
-  {
-    $_SESSION['connect'] = 0;
+  { session_destroy();
     ?> <script>alert('Vous êtes déconnecté')</script> <?php
     require '../src/View/home.php';
   }
@@ -168,6 +169,13 @@ if ($p === 'formAddUser') {
 
 
 // Adding a comment
+
+// display comments
+if ($p === 'comments') {
+  $dispComment= new CommentController();
+  $dispComment->comments();
+}
+
 
 // Change a post
 

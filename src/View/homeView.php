@@ -8,10 +8,6 @@ $subTitle = 'Myriam Stampers';
 $imglittle = '';
 
 ob_start();
-
-var_dump($_SESSION['pseudo']);
-var_dump($_SESSION['pass']);
-var_dump($_SESSION['email']);
 ?>
 <div class = "container-fluid">
     <div class = "row">

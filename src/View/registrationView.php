@@ -7,12 +7,7 @@ $subTitle = 'Myriam Stampers';
 // Page header little image
 $imglittle = '';
 
-ob_start();
-var_dump($_SESSION['connect']);
-var_dump($_SESSION['pass']);
-var_dump($_SESSION['email']);
-var_dump($_SESSION['pseudo']);
-?>
+ob_start();?>
 
 <div class="container-fluid">
     <div class = "row">

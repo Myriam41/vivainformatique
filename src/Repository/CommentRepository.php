@@ -7,24 +7,28 @@ use App\Entity\Comment;
 
 class CommentRepository extends Connect
 {
-    function getByPostId($articleID)
+    function getCommentsPost($articleID)
     {
         $db = $this->getDb();
-        $articleId = $_GET['id'];
+        $postId = $_GET['id'];
     
         // récupération des 10 derniers comments d'un article 
-        $reqSelect = 'SELECT *';
-        $reqFrom = ' FROM comments';
-        $reqWhere = ' WHERE postId = :postId ORDER BY createdAt LIMIT 0, 10';
-        $req = $db->prepare($reqSelect . $reqFrom . $reqWhere);
-        $req->bindparam(':postId', $postId, \PDO::PARAM_INT);
+        $reqSelect = 'SELECT c.id AS comment_id, 
+        c.contmessage, c.createdAt, c.updateAt, u.pseudo';
+        $reqFrom = ' FROM comments AS c';
+        $reqOn = ' INNER JOIN post ON c.postId = post.id
+        INNER JOIN user AS u ON c.userId = u.id';
+        $reqWhere = ' WHERE postId = :articleId';
+        $reqLimit = ' ORDER BY c.createdAt DESC LIMIT 0, 10';
+        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere . $reqLimit);
+        $req->bindparam(':articleId', $postId, \PDO::PARAM_INT);
         $req->execute();
         
         $comments = [];
-        while ($comment = $req->fetch())
-        {
-            $comments[] = new Comment($comment);
+        while ($data = $req->fetch()){
+            $comments[] = $data;
         }
+        $req->closeCursor();
         return $comments;
     }
     

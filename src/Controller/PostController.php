@@ -30,15 +30,14 @@ class PostController
     public function post()
     {       
         $postRepository = new PostRepository();
+        $dispComment = new CommentRepository();
+
         $postId = $_GET['id'];
         if (!empty($postId)) {
             $post = $postRepository->getOneById($postId);
+            $comments = $dispComment->getCommentsPost($postId);
         }
 
-        $comments = new CommentRepository();
-        if (!empty($postId)) {
-            $comments->getByPostId($postId);
-        }
         require '../src/View/postView.php';
     }
 

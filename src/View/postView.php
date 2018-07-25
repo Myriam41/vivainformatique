@@ -11,10 +11,6 @@ foreach ($post as $article) {
     $imglittle = '';
 
     ob_start();
-    echo Log::getConnect();
-var_dump(Log::getStatus());
-var_dump($_SESSION['connect']);
-var_dump($_SESSION['status']);
     //!-- Main Content --?>
     <div class="container">
     <div class="row">
@@ -43,7 +39,7 @@ var_dump($_SESSION['status']);
             </div>
         </div>
         <div class='row'>
-        <?php if(Log::getStatus() == 1){
+        <?php if($_SESSION['status']== 1){
             ?>
             
         <?php    require '../src/view/template/commentAdd.php';

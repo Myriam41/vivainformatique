@@ -60,9 +60,6 @@ class ConnectController
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['status'] = $user['status'];
                 $_SESSION['connect'] = 1;
-                $login = new Log;
-                $login->setStatus();
-                $login->setConnect();  
             }
 
             else {

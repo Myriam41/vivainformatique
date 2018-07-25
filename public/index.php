@@ -7,10 +7,6 @@ use App\Controller\PostController;
 use App\Controller\FormController;
 use App\Controller\ConnectController;
 use App\Controller\CommentController;
-use App\Entity\Log;
-
-$_SESSION['connect'] = Log::getConnect();  
-$_SESSION['status'] = Log::getStatus();
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
@@ -149,24 +145,17 @@ if ($p === 'admin') {
 }
 
 // Identification
-if ($p === 'login') {
-  $_SESSION['connect'] = Log::getConnect();
-  
-  if($_SESSION['connect'] === 0)
+if ($p === 'login') {  
+  if($_SESSION['connect'] === 1)
+  {     session_destroy();
+    require '../src/View/homeView.php';
+    ?> <script>alert('Vous êtes déconnecté')</script> <?php
+    
+  }
+  else
   {
     require '../src/View/registrationView.php';
   }
-  
-  if($_SESSION['connect'] === 1)
-  { session_destroy();
-    ?> <script>alert('Vous êtes déconnecté')</script> <?php
-    require '../src/View/home.php';
-  
-  }
-
-  else {
-    echo 'essaye encore une fois';
-  } 
 }
 //________________COMMENTS________________
 

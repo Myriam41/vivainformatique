@@ -7,12 +7,7 @@ $subTitle = 'Myriam Stampers';
 // Page header little image
 $imglittle = '';
 
-ob_start();
-echo Log::getConnect();
-var_dump(Log::getStatus());
-var_dump($_SESSION['connect']);
-var_dump($_SESSION['status']);
-?>
+ob_start();?>
 <div class="container-fluid">
     <div class = "row">
         <form class = "formlog col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-12 col-xs-12" method="post" action="index.php?page=formAddUser" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">

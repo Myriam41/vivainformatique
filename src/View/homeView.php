@@ -7,12 +7,7 @@ $subTitle = 'Myriam Stampers';
 // Page header little image
 $imglittle = '';
 
-ob_start();
-var_dump($_SESSION['connect']);
-var_dump($_SESSION['status']);
-echo Log::getConnect();
-var_dump(Log::getStatus());
-?>
+ob_start();?>
 <div class = "container-fluid">
     <div class = "row">
         <div class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">

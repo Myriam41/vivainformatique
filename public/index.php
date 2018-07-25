@@ -1,21 +1,22 @@
 <?php
 session_start();
 
-$_SESSION['connect'] = 0;
-$_SESSION['status'] = '';
-
-require_once'../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use App\Controller\PostController;
 use App\Controller\FormController;
 use App\Controller\ConnectController;
 use App\Controller\CommentController;
+use App\Entity\Log;
 
+$_SESSION['connect'] = Log::getConnect();  
+$_SESSION['status'] = Log::getStatus();
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
     $p = $_GET['page'];
-} else {
+} 
+else {
     $p = 'home';
 }
 
@@ -25,8 +26,8 @@ if ($p === 'home') {
   require '../src/View/homeView.php';
 }
 
+//_______________POSTS__________________
 // List of posts
-
 if ($p === 'postList') {
   $postController = new PostController();
   $postController->listPosts();
@@ -39,16 +40,9 @@ if ($p === 'post') {
   $contArticle->post();
 }
 
-//contact
-if ($p === 'contact') {
-  require '../src/View/contactView.php';
-}
-
-//send message
-if ($p === 'formHome') {
-  $formController = new FormController();
-  $formController->sendMessage();
-  require '../src/View/homeView.php';
+// Display postAddView
+if ($p === 'postNew') {
+  require '../src/View/postAddView.php';
 }
 
 // Add Post
@@ -62,29 +56,20 @@ if ($p === 'postAdd') {
   $newPost->newPost();
   require '../src/View/postListView.php';
 }
-  
-// Display pospostAddView
-if ($p === 'postNew') {
-  require '../src/View/postAddView.php';
+// Change a post
+
+//________________CONTACT_________________
+//contact
+if ($p === 'contact') {
+  require '../src/View/contactView.php';
 }
 
-//administration
-if ($p === 'admin') {
-  require '../src/View/administrationView.php';
-}
-
-// Identification
-if ($p === 'login') {
-  if($_SESSION['connect'] === 0)
-  {
-    require '../src/View/registrationView.php';
-  }
-  
-  if($_SESSION['connect'] === 1)
-  { session_destroy();
-    ?> <script>alert('Vous êtes déconnecté')</script> <?php
-    require '../src/View/home.php';
-  }
+//________________FORMS___________________
+//send message
+if ($p === 'formHome') {
+  $formController = new FormController();
+  $formController->sendMessage();
+  require '../src/View/homeView.php';
 }
 
 // Identification
@@ -110,78 +95,87 @@ if ($p === 'formLogin') {
   $verifPseudo= new ConnectController();
   $verifPseudo->Login();
   require '../src/View/homeView.php';
-
 }
 
 //Registration
 if ($p === 'formAddUser') {
-  //Data reception
-  $_SESSION['pseudo']= htmlspecialchars($_POST['pseudo']);
-  $_SESSION['pass'] = htmlspecialchars($_POST['pass']);
-  $_SESSION['email']= htmlspecialchars($_POST['email']);
-  $_SESSION['confPass'] = htmlspecialchars($_POST['confPass']);
+    //Data reception
+    $_SESSION['pseudo']= htmlspecialchars($_POST['pseudo']);
+    $_SESSION['pass'] = htmlspecialchars($_POST['pass']);
+    $_SESSION['email']= htmlspecialchars($_POST['email']);
+    $_SESSION['confPass'] = htmlspecialchars($_POST['confPass']);
+
+    //Vérifier qu'aucun champs est vide
+    if (!$_SESSION['pseudo']) {
+        ?> <script> alert("Merci de renseigner votre pseudonime")</script>
+  <?php
+    }
+
+    if (!$_SESSION['pass']) {
+        ?> <script> alert("Merci de renseigner votre mot de passe")</script>
+  <?php
+    }
+
+    if (!$_SESSION['email']) {
+        ?> <script> alert("Merci de renseigner votre e-mail")</script>
+  <?php
+    }
+
+    if (!$_SESSION['confPass']) {
+        ?> <script> alert("Merci de confirmer votre mot de passe")</script>
+  <?php
+    }
+
+    //si les mots de passes sont identiques
+    if ($_SESSION['pass'] === $_SESSION['confPass']) {
+        //data processing
+        $pass_hache= new ConnectController();
+        $_SESSION['pass']=$pass_hache->hach();
+
+        // Verification of the free pseudo. If ok add new user
+        $existPseudo= new ConnectController();
+        $existPseudo->existPseudo();
+
+        require '../src/View/homeView.php';
+    } else {
+        echo 'Les deux mots de passes sont différents';
+    }
+}
+
+//________________LOG AND STATUS___________________
+//administration
+if ($p === 'admin') {
+  require '../src/View/administrationView.php';
+}
+
+// Identification
+if ($p === 'login') {
+  $_SESSION['connect'] = Log::getConnect();
   
-  //Vérifier qu'aucun champs est vide
-  if(!$_SESSION['pseudo'])
+  if($_SESSION['connect'] === 0)
   {
-    ?> <script> alert("Merci de renseigner votre pseudonime")</script>
-    <?php
+    require '../src/View/registrationView.php';
   }
   
-  if(!$_SESSION['pass'])
-  {
-    ?> <script> alert("Merci de renseigner votre mot de passe")</script>
-    <?php
+  if($_SESSION['connect'] === 1)
+  { session_destroy();
+    ?> <script>alert('Vous êtes déconnecté')</script> <?php
+    require '../src/View/home.php';
+  
   }
 
-  if(!$_SESSION['email'])
-  {
-    ?> <script> alert("Merci de renseigner votre e-mail")</script>
-    <?php
-  }
+  else {
+    echo 'essaye encore une fois';
+  } 
+}
+//________________COMMENTS________________
 
-  if(!$_SESSION['confPass'])
-  {
-    ?> <script> alert("Merci de confirmer votre mot de passe")</script>
-    <?php
-  }
-
-  //si les mots de passes sont identiques
-  if ($_SESSION['pass'] === $_SESSION['confPass'] ) {
-      //data processing
-      $pass_hache= new ConnectController();
-      $_SESSION['pass']=$pass_hache->hach();
-
-      // Verification of the free pseudo. If ok add new user
-      $existPseudo= new ConnectController();
-      $existPseudo->existPseudo();
-
-      require '../src/View/homeView.php';
-     
-  }
-
-  else
-  {
-    echo 'Les deux mots de passes sont différents';
-  }
 
 // penser un envoyer un message pour vérifier que l'email est valide
 
 
 // Adding a comment
 
-// display comments
-if ($p === 'comments') {
-  $dispComment= new CommentController();
-  $dispComment->comments();
-}
 
-
-// Change a post
 
 // Change a comment
-
-}
-
-
-

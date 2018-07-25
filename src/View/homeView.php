@@ -1,5 +1,5 @@
 <?php
-
+use App\Entity\Log;
 $imgHeader = '../img/chouette_vol_640x420.png';
 $pageTitle = 'Développez votre avenir';
 $subTitle = 'Myriam Stampers';
@@ -8,6 +8,10 @@ $subTitle = 'Myriam Stampers';
 $imglittle = '';
 
 ob_start();
+var_dump($_SESSION['connect']);
+var_dump($_SESSION['status']);
+echo Log::getConnect();
+var_dump(Log::getStatus());
 ?>
 <div class = "container-fluid">
     <div class = "row">

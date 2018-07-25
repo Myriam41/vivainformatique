@@ -101,7 +101,7 @@
             </ul>
 
             <?php 
-            if($_SESSION['status']=='administrateur'){
+            if($_SESSION['status']== 1){
             ?>
             <a class = "admin" href="index.php?page=admin">admin</a>
             <?php

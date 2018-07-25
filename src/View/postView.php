@@ -1,4 +1,6 @@
 <?php
+use App\Entity\Log;
+
 
 foreach ($post as $article) {
     $imgHeader = '';
@@ -9,6 +11,10 @@ foreach ($post as $article) {
     $imglittle = '';
 
     ob_start();
+    echo Log::getConnect();
+var_dump(Log::getStatus());
+var_dump($_SESSION['connect']);
+var_dump($_SESSION['status']);
     //!-- Main Content --?>
     <div class="container">
     <div class="row">
@@ -37,13 +43,16 @@ foreach ($post as $article) {
             </div>
         </div>
         <div class='row'>
-        <?php if($_SESSION['status']='Administrateur'){
-            require 'template/commentAdd.php';
+        <?php if(Log::getStatus() == 1){
+            ?>
+            
+        <?php    require '../src/view/template/commentAdd.php';
         }
-        else echo 'Pour réagir à l\'article, vous devez être enregistré et connecté';
-        ?>
+        else {
+            echo 'Pour réagir à l\'article, vous devez être enregistré et connecté';
+        }?>
         </div>
-    </div>
+        </div>
 
 <?php
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ConnectRepository;
+use App\Entity\Log;
 
 /**
  * Class ConnectController
@@ -58,7 +59,10 @@ class ConnectController
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['status'] = $user['status'];
-                $_SESSION['connect'] = 1;          
+                $_SESSION['connect'] = 1;
+                $login = new Log;
+                $login->setStatus();
+                $login->setConnect();  
             }
 
             else {

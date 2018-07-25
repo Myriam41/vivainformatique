@@ -1,5 +1,5 @@
 <?php
-
+use App\Entity\Log;
 $imgHeader = '../img/chouette_vol_640x420.png';
 $pageTitle = '';
 $subTitle = 'Hier, Aujourd\'hui, Demain';
@@ -8,6 +8,10 @@ $subTitle = 'Hier, Aujourd\'hui, Demain';
 $imglittle = '';
 
 ob_start();
+echo Log::getConnect();
+var_dump(Log::getStatus());
+var_dump($_SESSION['connect']);
+var_dump($_SESSION['status']);
 ?>
 <p><a class="nav-link" href="index.php?page=postNew">Ajouter un article</a></p>
 <?php

@@ -1,7 +1,6 @@
 <?php
 
 // Menu connection user OK=1
-var_dump($_SESSION['connect']);
 
 if ($_SESSION['connect'] === 1){
 ?>  
@@ -31,7 +30,7 @@ if ($_SESSION['connect'] === 1){
 
 // Menu connection visitor NO=0
  
-if ($_SESSION['connect'] === 0){
+else{
 ?>
         <i class="fa fa-bars"></i>
         </button>

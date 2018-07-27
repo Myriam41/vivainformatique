@@ -12,6 +12,29 @@ use App\Entity\User;
 class UserRepository extends Connect
 {
     /**
+     * @function check all users
+     * @return $users
+     */
+    public function getAllUsers()
+    {
+        $db = $this->getDb();
+
+        $reqSelect = 'SELECT *';
+        $reqFrom = ' FROM user';
+        $reqWhere = ' ORDER BY createdAt DESC';
+        $req = $db->prepare($reqSelect . $reqFrom . $reqWhere);
+        $req->execute();
+        $users = [];
+        
+        while($data = $req->fetch()){
+            $users[] = $data;
+        }
+
+        $req->closeCursor();
+        return $users;
+    }
+
+    /**
      * @function retreive author with userId
      * @return $author
      */

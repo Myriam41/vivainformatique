@@ -49,13 +49,12 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
 
-        $postId = $_GET['id'];
-        $reqSelect = 'SELECT *';
-        $reqFrom = ' FROM post INNER JOIN user';
-        $reqOn = ' ON post.userId = user.id';
-        $reqWhere = ' WHERE post.id = :postId';
+        $reqSelect = 'SELECT p.title, p.introduction, p.content, p.createdAt, p.userId, p.id AS postId, u.pseudo  ';
+        $reqFrom = ' FROM post AS p INNER JOIN user AS u';
+        $reqOn = ' ON p.userId = u.id';
+        $reqWhere = ' WHERE p.id = :postId';
         $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere);
-        $req->bindParam(':postId', $postId, \PDO::PARAM_INT);
+        $req->bindParam(':postId', $_SESSION['postId'], \PDO::PARAM_INT);
         $req->execute();
         $post=[];
         
@@ -69,9 +68,23 @@ class PostRepository extends Connect
     /**
      * Function pour obtenir tous les articles
      */
-    public function allPost()
+    public function getAllPosts()
     {
+        $db = $this->getDb();
 
+        $reqSelect = 'SELECT *';
+        $reqFrom = ' FROM post';
+        $reqWhere = ' ORDER BY createdAt DESC';
+        $req = $db->prepare($reqSelect . $reqFrom . $reqWhere);
+        $req->execute();
+        $posts =[];
+        
+        while ($data = $req->fetch()){
+            $posts[] = $data; 
+        }        
+
+        $req->closeCursor();
+        return $posts;
     }
 
     /**

@@ -7,12 +7,11 @@ use App\Entity\Comment;
 
 class CommentRepository extends Connect
 {
-    function getCommentsPost($articleID)
+    public function getCommentsPost($articleID)
     {
         $db = $this->getDb();
-        $postId = $_GET['id'];
     
-        // récupération des 10 derniers comments d'un article 
+        // récupération des 10 derniers comments d'un article
         $reqSelect = 'SELECT c.id AS comment_id, 
         c.contmessage, c.createdAt, c.updateAt, u.pseudo';
         $reqFrom = ' FROM comments AS c';
@@ -21,18 +20,18 @@ class CommentRepository extends Connect
         $reqWhere = ' WHERE postId = :articleId';
         $reqLimit = ' ORDER BY c.createdAt DESC LIMIT 0, 10';
         $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere . $reqLimit);
-        $req->bindparam(':articleId', $postId, \PDO::PARAM_INT);
+        $req->bindparam(':articleId', $_SESSION['postId'], \PDO::PARAM_INT);
         $req->execute();
         
         $comments = [];
-        while ($data = $req->fetch()){
+        while ($data = $req->fetch()) {
             $comments[] = $data;
         }
         $req->closeCursor();
         return $comments;
     }
     
-    function getComment($commentID)
+    public function getComment($commentID)
     {
         $db = $this->getDb();
     
@@ -43,5 +42,23 @@ class CommentRepository extends Connect
         $comment = $req->fetch();
     
         return $comment;
+    }
+
+    /**
+     * Function pour ajouter un article dans la bd
+     */
+    public function newComment()
+    {
+        $db = $this->getDb();
+
+        $reqInsert = 'INSERT INTO comments';
+        $reqCol = '(postId, contmessage, createdAt, userId)';
+        $reqValues = ' VALUES(:postId, :contmessage, NOW() , :userId)';
+        $req = $db->prepare($reqInsert . $reqCol . $reqValues);
+        $req->bindParam(':postId', $_SESSION['postId'], \PDO::PARAM_STR);
+        $req->bindParam(':contmessage', $_SESSION['contmessage'], \PDO::PARAM_STR);
+        $req->bindParam(':userId', $_SESSION['userId'], \PDO::PARAM_INT);
+
+        $req->execute();
     }
 }

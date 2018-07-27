@@ -7,6 +7,17 @@ use App\Controller\PostController;
 use App\Controller\FormController;
 use App\Controller\ConnectController;
 use App\Controller\CommentController;
+use App\Controller\AdminController;
+
+$_SESSION['status'];
+if(!$_SESSION['status']){
+  $_SESSION['status']=0;
+}
+
+$_SESSION['connect'];
+if(!$_SESSION['connect']){
+  $_SESSION['connect']=0;
+}
 
 // Default opening : homeView.php
 if (isset($_GET['page'])) {
@@ -31,7 +42,7 @@ if ($p === 'postList') {
 
 // One post
 if ($p === 'post') {
-  $postId = $_GET['id'];
+  $_SESSION['postId'] = $_GET['id'];
   $contArticle = new PostController();
   $contArticle->post();
 }
@@ -148,6 +159,7 @@ if ($p === 'admin') {
 if ($p === 'login') {  
   if($_SESSION['connect'] === 1)
   {     session_destroy();
+    $_SESSION['connect'] = 0;
     require '../src/View/homeView.php';
     ?> <script>alert('Vous êtes déconnecté')</script> <?php
     
@@ -157,14 +169,54 @@ if ($p === 'login') {
     require '../src/View/registrationView.php';
   }
 }
+
+//_______________ADMIN__________________
+// display admin gestion
+if ($p === 'admin') {
+  $adminController = new AdminController();
+  $adminController->displayUsers();
+  $adminController->displayPosts();
+
+}
 //________________COMMENTS________________
+// Adding a comment
+if ($p === 'commentAdd') {
+
+  $_SESSION['contmessage']=$_POST['contmessage'];
+  $commentController = new CommentController();
+  $commentController->commentAdd();
+
+  $contArticle = new PostController();
+  $contArticle->post();
+  
+}
+
+// reply comment
+if ($p === 'reply_comment') {
+//récupère id du comment et id du user.
+//ouvre pop up de formulaire
+//attribue la valeur du comment commenté à parentid
+//revenir sur la page de l'article
+  
+}
+
+// edit comment
+if ($p === 'edit_comment') {
+//récupère id du comment et id du user.
+//vérification autorisation de modifier
+//ouvre page de modification à défaut de savoir commment écrire directement sur la page
+//revenir sur la page de l'article
+}
+
+// delete comment
+if ($p === 'delete_comment') {
+//récupère id du comment et id du user.*
+//véridication autorisation à deleter
+//delete
+//revenir sur la page de l'article
+}
+
+
 
 
 // penser un envoyer un message pour vérifier que l'email est valide
-
-
-// Adding a comment
-
-
-
-// Change a comment

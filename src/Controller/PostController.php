@@ -32,10 +32,9 @@ class PostController
         $postRepository = new PostRepository();
         $dispComment = new CommentRepository();
 
-        $postId = $_GET['id'];
-        if (!empty($postId)) {
-            $post = $postRepository->getOneById($postId);
-            $comments = $dispComment->getCommentsPost($postId);
+        if (!empty($_SESSION['postId'])) {
+            $post = $postRepository->getOneById($_SESSION['postId']);
+            $comments = $dispComment->getCommentsPost($_SESSION['postId']);
         }
 
         require '../src/View/postView.php';

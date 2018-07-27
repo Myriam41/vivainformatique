@@ -56,7 +56,7 @@ class ConnectController
         else
         {
             if ($isPasswordCorrect) {
-                $_SESSION['id'] = $user['id'];
+                $_SESSION['userId'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['status'] = $user['status'];
                 $_SESSION['connect'] = 1;

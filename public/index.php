@@ -10,12 +10,12 @@ use App\Controller\CommentController;
 use App\Controller\AdminController;
 
 $_SESSION['status'];
-if(!$_SESSION['status']){
+if(!isset($_SESSION['status'])){
   $_SESSION['status']=0;
 }
 
 $_SESSION['connect'];
-if(!$_SESSION['connect']){
+if(!isset($_SESSION['connect'])){
   $_SESSION['connect']=0;
 }
 
@@ -175,8 +175,6 @@ if ($p === 'login') {
 if ($p === 'admin') {
   $adminController = new AdminController();
   $adminController->displayUsers();
-  $adminController->displayPosts();
-
 }
 //________________COMMENTS________________
 // Adding a comment
@@ -188,16 +186,14 @@ if ($p === 'commentAdd') {
 
   $contArticle = new PostController();
   $contArticle->post();
-  
 }
 
 // reply comment
 if ($p === 'reply_comment') {
-//récupère id du comment et id du user.
-//ouvre pop up de formulaire
-//attribue la valeur du comment commenté à parentid
-//revenir sur la page de l'article
-  
+  require '../src/View/replyCommentView.php';
+
+  $contArticle = new PostController();
+  $contArticle->post();
 }
 
 // edit comment

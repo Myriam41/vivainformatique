@@ -17,8 +17,9 @@ class AdminController
      */
     public function displayUsers(){
         $userRepo= new UserRepository();
-        $users = $userRepo->getAllUsers();
+        
         $postRepo= new PostRepository();
+        $users = $userRepo->getAllUsers();
         $posts=$postRepo->getAllPosts();
         require '../src/View/administrationView.php';
 

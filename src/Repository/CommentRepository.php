@@ -52,12 +52,13 @@ class CommentRepository extends Connect
         $db = $this->getDb();
 
         $reqInsert = 'INSERT INTO comments';
-        $reqCol = '(postId, contmessage, createdAt, userId)';
-        $reqValues = ' VALUES(:postId, :contmessage, NOW() , :userId)';
+        $reqCol = '(postId, contmessage, createdAt, userId, parentId)';
+        $reqValues = ' VALUES(:postId, :contmessage, NOW() , :userId, :parentId)';
         $req = $db->prepare($reqInsert . $reqCol . $reqValues);
         $req->bindParam(':postId', $_SESSION['postId'], \PDO::PARAM_STR);
         $req->bindParam(':contmessage', $_SESSION['contmessage'], \PDO::PARAM_STR);
         $req->bindParam(':userId', $_SESSION['userId'], \PDO::PARAM_INT);
+        $req->bindParam(':parentId', $_SESSION['parentId'], \PDO::PARAM_INT);
 
         $req->execute();
     }

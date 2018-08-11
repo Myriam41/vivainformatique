@@ -14,6 +14,35 @@ use PDO;
 
 class PostRepository extends Connect
 {
+    public function updateValidPost()
+    {
+        $db = $this->getDb();
+
+        if($_SESSION['postValid']==1){
+            $reqUpdate = 'UPDATE post';
+            $reqSet = ' SET valid=0';
+            $reqWhere = ' WHERE id=:id';
+            $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
+            $req->bindParam(':id', $_SESSION['postId'], \PDO::PARAM_INT);
+
+            $req->execute();
+
+            $_SESSION['reqValid']='OK';
+        }
+
+        if($_SESSION['postValid']==0){
+            $reqUpdate = 'UPDATE post';
+            $reqSet = ' SET valid=1';
+            $reqWhere = ' WHERE id=:id';
+            $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
+            $req->bindParam(':id', $_SESSION['postId'], \PDO::PARAM_INT);
+
+            $req->execute();
+
+            $_SESSION['reqValid']='NO';
+        }
+        
+    }
     /**
      * @function retreive the last 10 articles
      * @return $Posts array
@@ -26,8 +55,9 @@ class PostRepository extends Connect
         p.title, p.introduction, p.createdAt, user.pseudo';
         $reqFrom = ' FROM post AS p INNER JOIN user';
         $reqOn = ' ON p.userId = user.id';
+        $reqWhere = ' WHERE p.valid = 1';
         $reqLimit = ' ORDER BY p.createdAt DESC LIMIT 0, 10';
-        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqLimit);
+        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere . $reqLimit);
         $req->execute();
         $posts=[];
 
@@ -52,7 +82,7 @@ class PostRepository extends Connect
         $reqSelect = 'SELECT p.title, p.introduction, p.content, p.createdAt, p.userId, p.id AS postId, u.pseudo  ';
         $reqFrom = ' FROM post AS p INNER JOIN user AS u';
         $reqOn = ' ON p.userId = u.id';
-        $reqWhere = ' WHERE p.id = :postId';
+        $reqWhere = ' WHERE p.id = :postId AND p.valid = 1';
         $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere);
         $req->bindParam(':postId', $_SESSION['postId'], \PDO::PARAM_INT);
         $req->execute();
@@ -72,10 +102,11 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
 
-        $reqSelect = 'SELECT *';
-        $reqFrom = ' FROM post';
+        $reqSelect = 'SELECT p.title, p.introduction, p.content, p.createdAt, p.updateAt, p.valid AS postValid, p.userId, p.id AS postId, u.pseudo AS pseudo, u.email AS email';
+        $reqFrom = ' FROM post AS p INNER JOIN user AS u';
+        $reqOn = ' ON p.userId = u.id';
         $reqWhere = ' ORDER BY createdAt DESC';
-        $req = $db->prepare($reqSelect . $reqFrom . $reqWhere);
+        $req = $db->prepare($reqSelect . $reqFrom . $reqOn . $reqWhere);
         $req->execute();
         $posts =[];
         

@@ -9,12 +9,11 @@ use App\Controller\ConnectController;
 use App\Controller\CommentController;
 use App\Controller\AdminController;
 
-$_SESSION['status'];
+
 if(!isset($_SESSION['status'])){
   $_SESSION['status']=0;
 }
 
-$_SESSION['connect'];
 if(!isset($_SESSION['connect'])){
   $_SESSION['connect']=0;
 }
@@ -150,11 +149,6 @@ if ($p === 'formAddUser') {
 }
 
 //________________LOG AND STATUS___________________
-//administration
-if ($p === 'admin') {
-  require '../src/View/administrationView.php';
-}
-
 // Identification
 if ($p === 'login') {  
   if($_SESSION['connect'] === 1)
@@ -176,10 +170,38 @@ if ($p === 'admin') {
   $adminController = new AdminController();
   $adminController->displayUsers();
 }
+
+// valid article
+if ($p === 'valid_post') {
+  $_SESSION['postId']=$_GET['id'];
+  $_SESSION['postValid']=$_GET['v'];
+  $adminController = new AdminController();
+  $adminController->validPost();
+  $adminController->displayUsers();
+}
+
+// valid comment
+if ($p === 'valid_comment') {
+  $_SESSION['commentId']=$_GET['id'];
+  $_SESSION['commentValid']=$_GET['v'];
+  $adminController = new AdminController();
+  $adminController->validComment();
+  $adminController->displayUsers();
+}
+
+// valid user
+if ($p === 'valid_user') {
+  $_SESSION['userId']=$_GET['id'];
+  $_SESSION['status']=$_GET['v'];
+  $adminController = new AdminController();
+  $adminController->validUser();
+  $adminController->displayUsers();
+}
+
+
 //________________COMMENTS________________
 // Adding a comment
 if ($p === 'commentAdd') {
-
   $_SESSION['contmessage']=$_POST['contmessage'];
   $commentController = new CommentController();
   $commentController->commentAdd();
@@ -190,26 +212,50 @@ if ($p === 'commentAdd') {
 
 // reply comment
 if ($p === 'reply_comment') {
+  $_SESSION['parentId']=$_GET['id'];
   require '../src/View/replyCommentView.php';
+}
+
+// edit comment
+if ($p === 'edit_comment') {
+  $_SESSION['commentId']=$_GET['id'];
+  $commentController = new CommentController();
+  $commentController->commentEdit();
+
+//commment écrire directement sur la page ? AJAX
+}
+
+//update comment
+if ($p === 'commentEdit') {
+  $_SESSION['contmessage']=$_POST['contmessage'];
+  $commentController = new CommentController();
+  $commentController->commentUpdate();
 
   $contArticle = new PostController();
   $contArticle->post();
 }
 
-// edit comment
-if ($p === 'edit_comment') {
-//récupère id du comment et id du user.
-//vérification autorisation de modifier
-//ouvre page de modification à défaut de savoir commment écrire directement sur la page
+// delete comment
+if ($p === 'delete_comment') {
+  $_SESSION['commentId']=$_GET['id'];
+  $commentController = new CommentController();
+  $commentController->commentDelete();
+
+  $contArticle = new PostController();
+  $contArticle->post();
+
+//delete
 //revenir sur la page de l'article
 }
 
-// delete comment
-if ($p === 'delete_comment') {
-//récupère id du comment et id du user.*
-//véridication autorisation à deleter
-//delete
-//revenir sur la page de l'article
+//________________Replies________________
+
+//display replies
+//non utilisé pour l'instant essais en cours
+if($p==='replies'){
+  $replyComment = new CommentRepository();
+  $replies = $replyComment->getReplies();
+  return $replies;
 }
 
 

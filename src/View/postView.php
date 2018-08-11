@@ -8,22 +8,28 @@ foreach ($post as $article) {
     $imglittle = '';
 
     ob_start();
-
-    require '../src/view/template/post.php'; ?>
+        //_____________Display Post______________________
+        require '../src/view/template/post.php'; ?>
 
     <div class="bloccomments">
-    <h3>commentaires</h3>
+        <h3>commentaires</h3>
 <?php
-    require '../src/view/template/comment.php'; ?>
+            //________Display comments et replies__________
+            require '../src/view/template/comment.php'; ?>
     </div>
+    
     <div class='row'>
 <?php
-    if ($_SESSION['status']== 1) {
-        require '../src/view/template/commentAdd.php';
-    } else {
-        echo 'Pour réagir à l\'article, vous devez être enregistré et connecté';
-    } ?>
+        //____________Display commentAdd___________________
+        if ($_SESSION['status']== 1) {
+            require '../src/view/template/commentAdd.php';
+        } else {
+            echo 'Pour réagir à l\'article, vous devez être enregistré et connecté';
+        } ?>
     </div>
+    <div class='row'>
+    </div>
+
 <?php
 
 $content = ob_get_clean();

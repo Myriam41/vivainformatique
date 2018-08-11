@@ -31,10 +31,12 @@ class PostController
     {       
         $postRepository = new PostRepository();
         $dispComment = new CommentRepository();
+        $replyComment = new CommentRepository();
 
         if (!empty($_SESSION['postId'])) {
             $post = $postRepository->getOneById($_SESSION['postId']);
             $comments = $dispComment->getCommentsPost($_SESSION['postId']);
+            $replies = $replyComment->getReplies($_SESSION['postId']);
         }
 
         require '../src/View/postView.php';

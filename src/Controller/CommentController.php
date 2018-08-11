@@ -10,6 +10,20 @@ use App\Repository\CommentRepository;
 
 class CommentController
 {
+    public function commentDelete()
+    {
+        $commentDelete = new CommentRepository();
+        $commentDelete->DeleteComment();
+    }
+
+    public function commentEdit()
+    {
+        $commentRepo = new CommentRepository();
+        $comment = $commentRepo->getOneComment();
+        require '../src/View/editCommentView.php';
+
+    }
+
     public function commentsPost()
     {
         $dispComment = new CommentRepository();
@@ -20,5 +34,11 @@ class CommentController
     {
         $commentAdd = new CommentRepository();
         $commentAdd->newComment();
+    }
+
+    public function commentUpdate()
+    {
+        $commentUpdate = new CommentRepository();
+        $commentUpdate->UpdateComment();
     }
 }

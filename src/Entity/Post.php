@@ -29,9 +29,14 @@ class Post
     private $content;
 
     /**
-     * @var string post's userId
+     * @var int post's userId
      */
     private $userId;
+
+    /**
+     * @var int post's userId
+     */
+    private $parentId;
 
     /**
      * @var int post's creation date
@@ -46,6 +51,7 @@ class Post
     /**
      * @param string $data use function hydrate
      */
+    
     public function __construct($data)
     {
         if (isset($data))
@@ -90,6 +96,13 @@ class Post
                  * hydration userId
                  */
                 $this->setUserId($data['userId']);
+            }
+
+            if (isset($data['parentId'])) {
+                /**
+                 * hydration userId
+                 */
+                $this->setParentId($data['parentId']);
             }
 
             if (isset($data['introduction'])) {
@@ -178,11 +191,19 @@ class Post
     }
 
     /**
-     * @return string userId
+     * @return int userId
      */
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * @return int userId
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
     }
 
     /**

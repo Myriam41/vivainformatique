@@ -8,6 +8,7 @@ use App\Controller\FormController;
 use App\Controller\ConnectController;
 use App\Controller\CommentController;
 use App\Controller\AdminController;
+use App\Model\Connect;
 
 if (!isset($_SESSION['status'])) {
     $_SESSION['status']=0;
@@ -107,8 +108,8 @@ if ($p === 'formHome') {
 // Identification
 if ($p === 'formLogin') {
     //Data reception
-    $_SESSION['pseudo']= htmlspecialchars($_POST['pseudo']);
-    $_SESSION['pass'] = htmlspecialchars($_POST['pass']);
+    $_SESSION['pseudo']= secure_db($_POST['pseudo']);
+    $_SESSION['pass'] = secure_db($_POST['pass']);
   
     //Vérifier qu'aucun champs est vide
     if (!$_SESSION['pseudo']) {
@@ -130,10 +131,10 @@ if ($p === 'formLogin') {
 //Registration
 if ($p === 'formAddUser') {
     //Data reception
-    $_SESSION['pseudo']= htmlspecialchars($_POST['pseudo']);
-    $_SESSION['pass'] = htmlspecialchars($_POST['pass']);
-    $_SESSION['email']= htmlspecialchars($_POST['email']);
-    $_SESSION['confPass'] = htmlspecialchars($_POST['confPass']);
+    $_SESSION['pseudo']= secure_db($_POST['pseudo']);
+    $_SESSION['pass'] = secure_db($_POST['pass']);
+    $_SESSION['email']= secure_db($_POST['email']);
+    $_SESSION['confPass'] = secure_db($_POST['confPass']);
 
     //Vérifier qu'aucun champs est vide
     if (!$_SESSION['pseudo']) {

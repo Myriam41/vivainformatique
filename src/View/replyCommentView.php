@@ -7,9 +7,7 @@ $subTitle = '';
 // Page header little image
 $imglittle = '';
 
-ob_start();
-var_dump($_SESSION['parentId']);
-?>
+ob_start();?>
     <div class="bloccomments">
 <?php
         require '../src/view/template/commentAdd.php';?>

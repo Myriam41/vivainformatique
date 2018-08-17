@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\Connect;
+
 /**
  * Class FormController
  */
@@ -16,9 +18,9 @@ class FormController
     public function sendMessage()
     {
         $to = 'lieninformatique9@gmail.com';
-        $name = htmlspecialchars($_POST['name']);
-        $email = htmlspecialchars($_POST['email']);
-        $message = htmlspecialchars($_post['message']);
+        $name = secure_db($_POST['name']);
+        $email = secure_db($_POST['email']);
+        $message = secure_db($_POST['message']);
         $sujet = $name.' depuis le site viva Informatique';
         $headers = 'From : ' . $email . "\r\n";
 

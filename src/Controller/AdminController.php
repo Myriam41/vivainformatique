@@ -38,7 +38,7 @@ class AdminController
         $valid = $postRepo->updateValidPost();
         if($_SESSION['reqValid']='OK'){
             $to = $_SESSION['email'];
-            $subject = 'Votre article sur VivaInforatique';
+            $subject = 'Votre article sur VivaInformatique';
             $message = $_SESSION['pseudo'] . ' , votre article est validé.' . "\r\n" . 'il est désormais visible sur le site VivaInformatique';
            
             // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
@@ -53,7 +53,7 @@ class AdminController
 
         if($_SESSION['reqValid']='NO'){
             $to = $_SESSION['email'];
-            $subject = 'Votre article sur VivaInforatique';
+            $subject = 'Votre article sur VivaInformatique';
             $message = $_SESSION['pseudo'] . ' , votre article a été refusé.' . "\r\n" . 'pour plus de détail n\'hésitez pas à nous contacter';
            
             // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini

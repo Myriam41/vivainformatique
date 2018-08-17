@@ -2,8 +2,8 @@
 
 // Menu connection user OK=1
 
-if ($_SESSION['connect'] === 1){
-?>  
+if ($_SESSION['connect'] === 1) {
+    ?>  
     <i class="fa fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -30,8 +30,8 @@ if ($_SESSION['connect'] === 1){
 
 // Menu connection visitor NO=0
  
-else{
-?>
+else {
+    ?>
         <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -51,4 +51,4 @@ else{
             </ul>
         </div>
     <?php
-    }
+}

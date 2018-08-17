@@ -8,7 +8,7 @@ foreach ($post as $article) {
     $imglittle = '';
 
     ob_start();
-        //_____________Display Post______________________
+    //_____________Display Post______________________
         require '../src/view/template/post.php'; ?>
 
     <div class="bloccomments">

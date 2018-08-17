@@ -1,5 +1,5 @@
 <?php
-    
+
 $imgHeader = '';
 $pageTitle = '';
 $subTitle = '';

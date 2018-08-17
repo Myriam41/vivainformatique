@@ -55,9 +55,37 @@ class PostController
         }
     }
 
+    /**
+     * new post
+     */
     public function newPost()
     {
         $addPost = new PostRepository();
         $addPost->addPost();
+    }
+
+    /**
+     * edit post
+     */
+    public function postEdit(){
+            $postRepo = new PostRepository();
+            $post = $postRepo->getOneById();
+            require '../src/View/editPostView.php';
+    }
+
+    /**
+     * delete post
+     */
+    public function postDelete(){
+        $postDelete = new PostRepository();
+        $postDelete->deletePost();
+    }
+
+    /**
+     * update post 
+     */
+    public function postUpdate(){
+        $postUpdate = new PostRepository();
+        $postUpdate->updatePost();
     }
 }

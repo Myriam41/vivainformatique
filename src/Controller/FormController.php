@@ -8,13 +8,13 @@ namespace App\Controller;
 class FormController
 {
     /**
-     * send message to administrator 
+     * send message to administrator
      *
      * @var $posts
      */
 
-    public function sendMessage() {
-
+    public function sendMessage()
+    {
         $to = 'lieninformatique9@gmail.com';
         $name = htmlspecialchars($_POST['name']);
         $email = htmlspecialchars($_POST['email']);

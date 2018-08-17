@@ -18,7 +18,7 @@ class PostRepository extends Connect
     {
         $db = $this->getDb();
 
-        if($_SESSION['postValid']==1){
+        if ($_SESSION['postValid']==1) {
             $reqUpdate = 'UPDATE post';
             $reqSet = ' SET valid=0';
             $reqWhere = ' WHERE id=:id';
@@ -27,10 +27,10 @@ class PostRepository extends Connect
 
             $req->execute();
 
-            $_SESSION['reqValid']='OK';
+            $_SESSION['reqValid']='NO';
         }
 
-        if($_SESSION['postValid']==0){
+        if ($_SESSION['postValid']==0) {
             $reqUpdate = 'UPDATE post';
             $reqSet = ' SET valid=1';
             $reqWhere = ' WHERE id=:id';
@@ -39,9 +39,8 @@ class PostRepository extends Connect
 
             $req->execute();
 
-            $_SESSION['reqValid']='NO';
+            $_SESSION['reqValid']='OK';
         }
-        
     }
     /**
      * @function retreive the last 10 articles
@@ -52,7 +51,7 @@ class PostRepository extends Connect
         $db = $this->getDb();
     
         $reqSelect = 'SELECT p.id AS post_id, 
-        p.title, p.introduction, p.createdAt, user.pseudo';
+        p.title, p.introduction, p.createdAt, p.updateAt, user.pseudo';
         $reqFrom = ' FROM post AS p INNER JOIN user';
         $reqOn = ' ON p.userId = user.id';
         $reqWhere = ' WHERE p.valid = 1';
@@ -61,8 +60,7 @@ class PostRepository extends Connect
         $req->execute();
         $posts=[];
 
-        while ($data = $req->fetch())
-        { 
+        while ($data = $req->fetch()) {
             $posts[]= $data;
         }
 
@@ -75,11 +73,11 @@ class PostRepository extends Connect
      * @param int $postId retreive one post
      * @return $post
      */
-    public function getOneById($postId)
+    public function getOneById()
     {
         $db = $this->getDb();
 
-        $reqSelect = 'SELECT p.title, p.introduction, p.content, p.createdAt, p.userId, p.id AS postId, u.pseudo  ';
+        $reqSelect = 'SELECT p.title, p.introduction, p.content, p.createdAt, p.updateAt, p.userId, p.id AS postId, u.pseudo  ';
         $reqFrom = ' FROM post AS p INNER JOIN user AS u';
         $reqOn = ' ON p.userId = u.id';
         $reqWhere = ' WHERE p.id = :postId AND p.valid = 1';
@@ -88,7 +86,7 @@ class PostRepository extends Connect
         $req->execute();
         $post=[];
         
-        while($data = $req->fetch()){
+        while ($data = $req->fetch()) {
             $post[] = $data;
         }
         $req->closeCursor();
@@ -110,9 +108,9 @@ class PostRepository extends Connect
         $req->execute();
         $posts =[];
         
-        while ($data = $req->fetch()){
-            $posts[] = $data; 
-        }        
+        while ($data = $req->fetch()) {
+            $posts[] = $data;
+        }
 
         $req->closeCursor();
         return $posts;
@@ -135,7 +133,6 @@ class PostRepository extends Connect
         $req->bindParam(':userId', $_SESSION['userId'], \PDO::PARAM_INT);
 
         $req->execute();
-        
     }
 
     /**
@@ -143,12 +140,30 @@ class PostRepository extends Connect
      */
     public function deletePost()
     {
+        $db = $this->getDb();
+
+        $reqUpdate = 'DELETE FROM post';
+        $reqWhere = ' WHERE id=:id';
+        $req = $db->prepare($reqUpdate . $reqWhere);
+        $req->bindParam(':id', $_SESSION['postId'], \PDO::PARAM_INT);
+
+        $req->execute();
     }
 
     /**
-     * Function pour modifier un article dans la bd
+     * function update one post
      */
     public function updatePost()
     {
+        $db = $this->getDb();
+
+        $reqUpdate = 'UPDATE post';
+        $reqSet = ' SET content=:content, updateAt=now()';
+        $reqWhere = ' WHERE id=:id';
+        $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
+        $req->bindParam(':id', $_SESSION['postId'], \PDO::PARAM_INT);
+        $req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
+
+        $req->execute();
     }
 }

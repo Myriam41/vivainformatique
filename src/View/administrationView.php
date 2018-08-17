@@ -36,24 +36,33 @@ ob_start();?>
                 </tr>
 
 <?php           foreach ($users as $user) {
-                    for ($i=1; $i<=$nbLigne; $i++) { ?>       
+                for ($i=1; $i<=$nbLigne; $i++) {
+                    ?>       
                         <tr>
-<?php               
-                        if ($k < $nbData) { ?>
+<?php 
+                        if ($k < $nbData) {
+                            ?>
                             <td> <?php echo $user['pseudo']; ?> </td>
-                            <td> <?php                           
-                                if($user['status']==1){?>
+                            <td> <?php 
+                                if ($user['status']==1) {
+                                    ?>
                                     <a class="btn btn-success" href="index.php?page=valid_user&id=<?= $user['id'] ?>&v=<?=$user['status']?>"</a>
-<?php                           }
-                                if($user['status']==0){?>
+<?php
+                                }
+                            if ($user['status']==0) {
+                                ?>
                                     <a class="btn btn-danger" href="index.php?page=valid_user&id=<?= $user['id'] ?>&v=<?=$user['status']?>"></a>
-<?php                           }?>   </td>
-<?php                   } ?>
+<?php
+                            } ?>   </td>
+<?php
+                        } ?>
                         </tr>
-<?php               } 
-                }?>
+<?php
+                }
+            } ?>
             </table><br/>
-<?php   } ?>
+<?php
+        } ?>
 
     <!--liste des articles affichant leur contenu, date, status validation-->
     <div class='container'>
@@ -86,33 +95,41 @@ ob_start();?>
                     <th scope="col">Validation</th>
                 </tr>
 
-<?php           foreach ($posts as $post) { 
-                    for ($i=1; $i<=$nbLigne; $i++) { 
-                        $_SESSION['pseudo'] = $post['pseudo'];
-                        $_SESSION['email'] = $post['email'];
-                        ?>       
+<?php           foreach ($posts as $post) {
+                for ($i=1; $i<=$nbLigne; $i++) {
+                    $_SESSION['pseudo'] = $post['pseudo'];
+                    $_SESSION['email'] = $post['email']; ?>       
                         <tr>
-<?php               
-                        if ($k < $nbData2) { ?>
+<?php 
+                        if ($k < $nbData2) {
+                            ?>
                             <td> <?php echo $post['title']; ?> </td>
                             <td> <?php echo $post['introduction']; ?> </td>
                             <td> <?php echo $post['content']; ?> </td>
                             <td> <?php echo $post['createdAt']; ?> </td>
                             <td> <?php echo $post['updateAt']; ?> </td>
-                            <td> <?php echo $post['postValid']; echo $post['postId'];                        
-                                if($post['postValid']==1){?>
+                            <td> <?php echo $post['postValid'];
+                            echo $post['postId'];
+                            if ($post['postValid']==1) {
+                                ?>
                                     <a class="btn btn-success" href="index.php?page=valid_post&id=<?= $post['postId'] ?>&v=<?=$post['postValid']?>"></a>
-<?php                           }
-                                if($post['postValid']==0){?>
+<?php
+                            }
+                            if ($post['postValid']==0) {
+                                ?>
                                     <a class="btn btn-danger" href="index.php?page=valid_post&id=<?= $post['postId'] ?>&v=<?=$post['postValid']?>"></a>
-<?php                           }?>                                                          
+<?php
+                            } ?>                                                          
                             </td>
-<?php                   } ?>
+<?php
+                        } ?>
                         </tr>
-<?php               } 
-                }?>
+<?php
+                }
+            } ?>
             </table><br/>
-<?php   } ?>
+<?php
+        } ?>
     </div><br/>
 
 <!--liste des commentaires affichant leur contenu, date, status validation-->
@@ -144,27 +161,36 @@ ob_start();?>
                     <th scope="col">Validation</th>
                 </tr>
 
-<?php           foreach ($comments as $comment) { 
-                    for ($i=1; $i<=$nbLigne; $i++) { ?>       
+<?php           foreach ($comments as $comment) {
+                for ($i=1; $i<=$nbLigne; $i++) {
+                    ?>       
                         <tr>
-<?php               
-                        if ($k < $nbData3) { ?>
+<?php 
+                        if ($k < $nbData3) {
+                            ?>
                             <td> <?php echo $comment['contmessage']; ?> </td>
                             <td> <?php echo $comment['createdAt']; ?> </td>
                             <td> <?php echo $comment['updateAt']; ?> </td>
-                            <td> <?php                          
-                                if($comment['commentValid']==1){?>
+                            <td> <?php 
+                                if ($comment['commentValid']==1) {
+                                    ?>
                                     <a class="btn btn-success" href="index.php?page=valid_comment&id=<?= $comment['commentId'] ?>&v=<?=$comment['commentValid']?>"></a>
-<?php                           }
-                                if($comment['commentValid']==0){?>
+<?php
+                                }
+                            if ($comment['commentValid']==0) {
+                                ?>
                                     <a class="btn btn-danger" href="index.php?page=valid_comment&id=<?= $comment['commentId'] ?>&v=<?=$comment['commentValid']?>"></a>
-<?php                           }?>   </td>
-<?php                   } ?>
+<?php
+                            } ?>   </td>
+<?php
+                        } ?>
                         </tr>
-<?php               } 
-                }?>
+<?php
+                }
+            } ?>
             </table><br/>
-<?php   } ?>
+<?php
+        } ?>
     </div><br/>
 
     <!--Liste des statuts.-->
@@ -175,4 +201,4 @@ ob_start();?>
 <?php
 $content = ob_get_clean();
 
-require ('../src/View/template/default.php');
+require('../src/View/template/default.php');

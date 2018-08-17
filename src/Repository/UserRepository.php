@@ -26,7 +26,7 @@ class UserRepository extends Connect
         $req->execute();
         $users = [];
         
-        while($data = $req->fetch()){
+        while ($data = $req->fetch()) {
             $users[] = $data;
         }
 

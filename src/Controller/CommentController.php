@@ -21,7 +21,6 @@ class CommentController
         $commentRepo = new CommentRepository();
         $comment = $commentRepo->getOneComment();
         require '../src/View/editCommentView.php';
-
     }
 
     public function commentsPost()

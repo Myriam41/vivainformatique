@@ -1,5 +1,5 @@
 <?php
-    
+
 $imgHeader = '';
 $pageTitle = '';
 $subTitle = '';
@@ -8,7 +8,7 @@ $subTitle = '';
 $imglittle = '';
 
 ob_start();
-foreach ($comment as $data){
+foreach ($comment as $data) {
     ?>
     <div class="bloccomments">  
     <form action="index.php?page=commentEdit&id=<?=$_SESSION['commentId']; ?>" method="post" class="col-lg-10">

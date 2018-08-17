@@ -54,8 +54,7 @@ class Post
     
     public function __construct($data)
     {
-        if (isset($data))
-        {
+        if (isset($data)) {
             $this->hydrate($data);
         }
     }

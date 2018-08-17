@@ -4,9 +4,7 @@ use App\Entity\Post;
 foreach ($comments as $comment) {?>
     <div class="container">
     <div class="row">
-    <?php var_dump($comment['comment_id']);
-    var_dump($comment['pseudo']);
-    var_dump($_SESSION['pseudo']);?>
+
     <div class="col-lg-8 col-md-10 mx-auto">
         <span class="post-meta">Posté par 
             <?= htmlspecialchars($comment['pseudo']); ?> le 

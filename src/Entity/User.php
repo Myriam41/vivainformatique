@@ -38,7 +38,7 @@ class User
      */
     private $email;
 
-        /**
+    /**
      * @var string user's phone
      */
     private $phone;
@@ -48,8 +48,7 @@ class User
      */
     public function __construct($data)
     {
-        if (isset($data))
-        {
+        if (isset($data)) {
             $this->hydrate($data);
         }
     }
@@ -189,7 +188,7 @@ class User
     {
         $this->email = htmlspecialchars($email);
     }
-        /**
+    /**
     * @return string phone
     */
     public function getPhone()

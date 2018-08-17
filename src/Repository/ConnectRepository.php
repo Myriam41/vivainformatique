@@ -16,45 +16,44 @@ class ConnectRepository extends Connect
      */
     public function newUser()
     {
-    $db = $this->getDb();
+        $db = $this->getDb();
 
-    $pseudo  =$_SESSION['pseudo'];
-    $pass = $_SESSION['pass'];
-    $email = $_SESSION['email'];
+        $pseudo  =$_SESSION['pseudo'];
+        $pass = $_SESSION['pass'];
+        $email = $_SESSION['email'];
 
-    $reqInsert = 'INSERT INTO user(pseudo, pass, createdAt, email)' ;
-    $reqValues = 'VALUES(:pseudo, :pass, now(), :email)';
-    $req = $db->prepare($reqInsert . $reqValues);
-    $req->execute(array(
+        $reqInsert = 'INSERT INTO user(pseudo, pass, createdAt, email)' ;
+        $reqValues = 'VALUES(:pseudo, :pass, now(), :email)';
+        $req = $db->prepare($reqInsert . $reqValues);
+        $req->execute(array(
         'pseudo' => $pseudo,
         'pass' => $pass,
-        'email' => $email));        
-}
+        'email' => $email));
+    }
     /**
      * function SELECT user
      */
     public function existPseudo()
     {
-    $db = $this->getDb();
+        $db = $this->getDb();
 
-    $req = $db->prepare('SELECT COUNT(pseudo) FROM user WHERE pseudo = :pseudo');
-    $req->execute(array(
+        $req = $db->prepare('SELECT COUNT(pseudo) FROM user WHERE pseudo = :pseudo');
+        $req->execute(array(
     'pseudo' => $_SESSION['pseudo']));
-    $isAvailable = $req->fetch();
+        $isAvailable = $req->fetch();
 
-    return $isAvailable;
+        return $isAvailable;
     }
 
     public function getUser()
     {
-    $db = $this->getDb();
+        $db = $this->getDb();
 
-    $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
-    $req->execute(array(
+        $req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+        $req->execute(array(
     'pseudo' => $_SESSION['pseudo']));
-    $user = $req->fetch();
+        $user = $req->fetch();
 
-    return $user;
+        return $user;
     }
-
 }

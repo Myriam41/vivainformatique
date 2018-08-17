@@ -19,51 +19,40 @@ class ConnectController
 
     public function existPseudo()
     {
-        $user = NEW ConnectRepository();   
+        $user = new ConnectRepository();
         $isAvailable = $user->getUser();
 
         // Si aucun pseudo existe alors création du nouvel utilisateur
         // intval retourne 0 si le tableau est vide et 1 s'il est rempli. Pas utilisable pour des objets.
-        if(intval($isAvailable[0]) == 0)
-        {
-            $newUser = NEW ConnectRepository();
+        if (intval($isAvailable[0]) == 0) {
+            $newUser = new ConnectRepository();
             $newUser->newUser();
-            // faire valider l'email
-        }
-
-        else 
-        {
+        // faire valider l'email
+        } else {
             ?> <script> alert("Merci de choisir un autre pseudo")</script>
             <?php
         }
-        
     }
 
     public function Login()
     {
         // search of the user and his password
-        $connectRepository = NEW ConnectRepository;
+        $connectRepository = new ConnectRepository;
         $user = $connectRepository->getUser();
 
         //récupérer la recherche en fonction du name et vérifier le password
         $isPasswordCorrect = password_verify($_SESSION['pass'], $user['pass']);
 
-        if (!$user)
-        {
+        if (!$user) {
             echo 'Mauvais identifiant ou mot de passe !';
-        }
-
-        else
-        {
+        } else {
             if ($isPasswordCorrect) {
                 $_SESSION['userId'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['status'] = $user['status'];
                 $_SESSION['connect'] = 1;
-            }
-
-            else {
-            echo 'Mauvais identifiant ou mot de passe !';
+            } else {
+                echo 'Mauvais identifiant ou mot de passe !';
             }
         }
     }

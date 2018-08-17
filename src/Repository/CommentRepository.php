@@ -105,7 +105,7 @@ class CommentRepository extends Connect
         $req->execute();
         $comments = [];
 
-        while ($data = $req->fetch()){
+        while ($data = $req->fetch()) {
             $comments[] = $data;
         }
     
@@ -118,7 +118,7 @@ class CommentRepository extends Connect
     public function newComment()
     {
         $db = $this->getDb();
-        if(!isset($_SESSION['parentId'])){
+        if (!isset($_SESSION['parentId'])) {
             $_SESSION['parentId']=0;
         }
 

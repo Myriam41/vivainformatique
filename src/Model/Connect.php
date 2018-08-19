@@ -15,7 +15,7 @@ abstract class Connect
      * data to connect with database
      */
     private $db;
-    
+
     /**
      * Function to connect
      * @return db

@@ -14,23 +14,17 @@ foreach ($post as $data) {
         <fieldset>
             <div class="form group">  
                 <label for "content">Titre: </label>
-                <textarea id="title" name="title" class="form-control" rows="1" cols="50">
-                    <?= $data['title']; ?>
-                </textarea> 
+                <textarea id="title" name="title" class="form-control" rows="1" cols="50"><?= $data['title']; ?></textarea> 
             </div>
 
             <div class="form group">  
                 <label for "introduction">chapo : </label>
-                <textarea id="introduction" name="introduction" class="form-control" rows="1" cols="50">
-                    <?= $data['introduction']; ?>
-                </textarea> 
+                <textarea id="introduction" name="introduction" class="form-control" rows="1" cols="50"><?= $data['introduction']; ?></textarea> 
             </div>
 
             <div class="form group">  
                 <label for "content">Article : </label>
-                <textarea id="content" name="content" class="form-control" rows="4" cols="50">
-                    <?= $data['content']; ?>
-                </textarea> 
+                <textarea id="content" name="content" class="form-control" rows="4" cols="50"><?= $data['content']; ?></textarea> 
             </div>
 <?php
 }?>

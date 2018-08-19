@@ -24,8 +24,7 @@ ob_start();?>
       </div>
       <div class="form group">  
         <label for "content">Texte : </label>
-      <textarea id="content" name="content" class="form-control" rows="4" cols="50">
-      </textarea> </div>
+      <textarea id="content" name="content" class="form-control" rows="4" cols="50"></textarea> </div>
       
 </br>
       <div class="form-group">

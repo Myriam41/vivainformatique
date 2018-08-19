@@ -38,3 +38,9 @@ h3{
 .container_reply{
     background-color: rgb(94, 166, 184);
 }
+
+#mimi{
+    width: 80%;
+    height: auto;
+    margin: auto;
+}

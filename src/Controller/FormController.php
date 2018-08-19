@@ -7,7 +7,7 @@ use App\Model\Connect;
 /**
  * Class FormController
  */
-class FormController
+class FormController  extends Connect
 {
     /**
      * send message to administrator
@@ -17,10 +17,12 @@ class FormController
 
     public function sendMessage()
     {
+//        $data = $this->secure_db();
+
         $to = 'lieninformatique9@gmail.com';
-        $name = secure_db($_POST['name']);
-        $email = secure_db($_POST['email']);
-        $message = secure_db($_POST['message']);
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $message = htmlspecialchars($_POST['message']);
         $sujet = $name.' depuis le site viva Informatique';
         $headers = 'From : ' . $email . "\r\n";
 

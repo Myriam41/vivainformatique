@@ -42,13 +42,13 @@ class AdminController
             $message = $_SESSION['pseudo'] . ' , votre article est validé.' . "\r\n" . 'il est désormais visible sur le site VivaInformatique';
            
             // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-            $headers[] = 'MIME-Version: 1.0';
-            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            $headers = 'MIME-Version: 1.0';
+            $headers .= 'Content-type: text/html; charset=iso-8859-1';
 
             // En-têtes additionnels
-            $headers[] = 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
-            $headers[] = 'From: VivaInformatique <lieninformatique9@gmail.com>';
-            mail($to, $subject, $message, $headers);
+            $headers .= 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
+            $headers .= 'From: VivaInformatique <lieninformatique9@gmail.com>';
+         //   mail($to, $subject, $message, $headers);
         }
 
         if($_SESSION['reqValid']='NO'){
@@ -57,13 +57,13 @@ class AdminController
             $message = $_SESSION['pseudo'] . ' , votre article a été refusé.' . "\r\n" . 'pour plus de détail n\'hésitez pas à nous contacter';
            
             // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-            $headers[] = 'MIME-Version: 1.0';
-            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            $headers = 'MIME-Version: 1.0';
+            $headers .= 'Content-type: text/html; charset=iso-8859-1';
 
             // En-têtes additionnels
-            $headers[] = 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
-            $headers[] = 'From: VivaInformatique <lieninformatique9@gmail.com>';
-            mail($to, $subject, $message, $headers);
+            $headers .= 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
+            $headers .= 'From: VivaInformatique <lieninformatique9@gmail.com>';
+         //   mail($to, $subject, $message, $headers);
         }
     }
 

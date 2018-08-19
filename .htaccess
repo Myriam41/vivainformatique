@@ -1,0 +1,2 @@
+    DirectoryIndexRedirect permanent 
+    DirectoryIndex index.php public/index.php

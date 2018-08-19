@@ -1,7 +1,7 @@
 <?php
 use App\Entity\Log;
 
-$imgHeader = '../img/chouette_vol_640x420.png';
+$imgHeader = '../img/chouette_vol_640x420.jpg';
 $pageTitle = 'Développez votre avenir';
 $subTitle = 'Myriam Stampers';
 

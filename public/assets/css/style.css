@@ -31,7 +31,13 @@
     background-color: beige;
 }
 
-h3{
+h3 {
+    text-align: center;
+}
+.masthead{
+    margin-bottom: 20px;
+}
+.pageTitle{
     text-align: center;
 }
 

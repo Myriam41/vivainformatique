@@ -3,7 +3,7 @@ use App\Entity\Log;
 
 $imgHeader = '../img/chouette_vol_640x420.jpg';
 $pageTitle = 'Développez votre avenir';
-$subTitle = 'Myriam Stampers';
+$subTitle = '<img src="../img/stamp_JauBleu400.png" alt="logo Stamp Development"/>';
 
 // Page header little image
 $imglittle = '';

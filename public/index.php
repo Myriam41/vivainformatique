@@ -60,9 +60,9 @@ if ($p === 'postNew') {
 
 // Add Post
 if ($p === 'postAdd') {
-    $_SESSION['title'] = htmlspecialchars($_POST['title']);
-    $_SESSION['introduction'] = htmlspecialchars($_POST['introduction']);
-    $_SESSION['content'] = htmlspecialchars($_POST['content']);
+    $_SESSION['title'] = htmlspecialchars($_POST['title'], ENT_IGNORE);
+    $_SESSION['introduction'] = htmlspecialchars($_POST['introduction'], ENT_IGNORE);
+    $_SESSION['content'] = htmlspecialchars($_POST['content'], ENT_IGNORE);
 
     $newPost = new PostController;
     $newPost->newPost();
@@ -77,7 +77,7 @@ if ($p === 'edit_post') {
 
 //update post
 if ($p === 'postEdit') {
-    $_SESSION['content']= htmlspecialchars($_POST['content']);
+    $_SESSION['content']= htmlspecialchars($_POST['content'], ENT_IGNORE);
     $postController = new PostController();
     $postController->postUpdate();
     $postController->post();
@@ -248,7 +248,7 @@ if ($p === 'edit_comment') {
 
 //update comment
 if ($p === 'commentEdit') {
-    $_SESSION['contmessage']= htmlspecialchars($_POST['contmessage']);
+    $_SESSION['contmessage']= htmlspecialchars($_POST['contmessage'], ENT_IGNORE);
     $commentController = new CommentController();
     $commentController->commentUpdate();
 
@@ -278,3 +278,5 @@ if ($p==='replies') {
 
 
 // penser un envoyer un message pour vérifier que l'email est valide
+
+//super comment

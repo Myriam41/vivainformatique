@@ -3,7 +3,7 @@ use App\Entity\Log;
 
 $imgHeader = '../img/chouette_vol_640x420.jpg';
 $pageTitle = 'Développez votre avenir';
-$subTitle = '<img src="../img/stamp_JauBleu400.png" alt="logo Stamp Development"/>';
+$subTitle = '';
 
 // Page header little image
 $imglittle = '';
@@ -16,7 +16,8 @@ ob_start();?>
                <img id="mimi" src="../img/myr2.jpg"  alt="Photo du développeur"/>
                <a class="nav-link" href="index.php?page=postList">Articles</a>
         </div>
-
+    </div>
+    <div class = "row">
         <form class = "col-lg-offset-3 col-lg-5 col-md-offset-5 col-md-7 col-sm-12 col-xs-12" method="post" action="index.php?page=formHome" onsubmit="votre message a bien été envoyé. Nous vous contacterons rapidement">
             <legend> Un projet ? une question ? Envoyez-moi un message </legend>
                 <div class="form-group">
@@ -34,6 +35,13 @@ ob_start();?>
 
                 <input type="submit" name="sendmail" value="Envoyer"/>
         </form>
+        <div class = "row">
+        <div class = "col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center">
+               <a class="nav-link" target="_blank" href="../doc/cv 2018 informatique.pdf">Mon CV</a>
+               <img id="mimi" src="../img/myr2.jpg"  alt="Photo du développeur"/>
+               <a class="nav-link" href="index.php?page=postList">Articles</a>
+        </div>
+    </div>
 
     </div>
 </div>

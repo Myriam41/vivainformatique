@@ -8,11 +8,10 @@ use App\Entity\User;
 /**
  * Class UerRepository extend Connect
  */
-
 class UserRepository extends Connect
 {
     /**
-     * @function check all users
+     * @function SELECT all users
      * @return $users
      */
     public function getAllUsers()
@@ -35,7 +34,7 @@ class UserRepository extends Connect
     }
 
     /**
-     * @function retreive author with userId
+     * @function SELECT author with userId
      * @return $author
      */
 
@@ -59,6 +58,9 @@ class UserRepository extends Connect
         return $author;
     }
 
+    /**
+     * function UPDATE valid user
+     */
     public function updateValidUser()
     {
         $db = $this->getDb();

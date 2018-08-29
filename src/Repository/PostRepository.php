@@ -9,11 +9,13 @@ use PDO;
 
 /**
  * Class PostRepository extend Connect
- * functions to retreive data from articles
  */
 
 class PostRepository extends Connect
 {
+/**
+ * function UPDATE valid post
+ */
     public function updateValidPost()
     {
         $db = $this->getDb();
@@ -43,7 +45,7 @@ class PostRepository extends Connect
         }
     }
     /**
-     * @function retreive the last 10 articles
+     * @function SELECT the last 10 articles
      * @return $Posts array
      */
     public function getByLimit()
@@ -69,7 +71,7 @@ class PostRepository extends Connect
     }
     
     /**
-     * @function retreive a post with id
+     * @function SELECT a post with id
      * @param int $postId retreive one post
      * @return $post
      */
@@ -94,7 +96,8 @@ class PostRepository extends Connect
     }
 
     /**
-     * Function pour obtenir tous les articles
+     * Function SELECT all posts
+     * @return $posts
      */
     public function getAllPosts()
     {
@@ -117,7 +120,7 @@ class PostRepository extends Connect
     }
 
     /**
-     * Function pour ajouter un article dans la bd
+     * Function INSERT TO post
      */
     public function addPost()
     {
@@ -136,7 +139,7 @@ class PostRepository extends Connect
     }
 
     /**
-     * Function pour supprimer un article dans la bd
+     * Function DELETE post
      */
     public function deletePost()
     {
@@ -151,7 +154,7 @@ class PostRepository extends Connect
     }
 
     /**
-     * function update one post
+     * function UPDATE one post
      */
     public function updatePost()
     {

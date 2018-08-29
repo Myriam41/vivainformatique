@@ -5,7 +5,6 @@ namespace App\Entity;
 /**
  * Class User
  */
-
 class User
 {
     /**

@@ -5,7 +5,6 @@ namespace App\Entity;
 /**
  * Class Post
  */
-
 class Post
 {
     /**

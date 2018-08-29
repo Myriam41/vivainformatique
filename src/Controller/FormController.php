@@ -11,7 +11,6 @@ class FormController  extends Connect
 {
     /**
      * send message to administrator
-     *
      * @var $posts
      */
 

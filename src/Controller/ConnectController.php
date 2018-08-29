@@ -8,21 +8,27 @@ use App\Entity\Log;
 /**
  * Class ConnectController
  */
-
 class ConnectController
 {
+    /**
+     * function hach password
+     * @return $pass_hache
+     */
     public function hach()
     {
         $pass_hache = password_hash($_SESSION['pass'], PASSWORD_DEFAULT);
         return $pass_hache;
     }
 
+    /**
+     * function check if pseudo exist already in database
+     */
     public function existPseudo()
     {
         $user = new ConnectRepository();
         $isAvailable = $user->getUser();
 
-        // Si aucun pseudo existe alors création du nouvel utilisateur
+        // if no pseudo in database
         // intval retourne 0 si le tableau est vide et 1 s'il est rempli. Pas utilisable pour des objets.
         if (intval($isAvailable[0]) == 0) {
             $newUser = new ConnectRepository();
@@ -34,13 +40,16 @@ class ConnectController
         }
     }
 
+    /**
+     * function login
+     */
     public function Login()
     {
         // search of the user and his password
         $connectRepository = new ConnectRepository;
         $user = $connectRepository->getUser();
 
-        //récupérer la recherche en fonction du name et vérifier le password
+        //check password
         $isPasswordCorrect = password_verify($_SESSION['pass'], $user['pass']);
 
         if (!$user) {
@@ -57,14 +66,17 @@ class ConnectController
         }
     }
 
+    /**
+     * function offline
+     */
     public function offline()
     {
-        // Suppression des variables de session et de la session
+        //delete session
         $_SESSION = array();
 
         session_destroy();
 
-        // Suppression des cookies de connexion automatique
+        // delete cookies automatic login
         setcookie('login', '');
         setcookie('pass_hache', '');
     }

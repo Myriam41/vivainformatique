@@ -10,14 +10,14 @@ use App\Entity\User;
 /**
  * Class UserController
  */
-
 class AdminController
 {
     //________________valid_____________________
     /**
      * function valid user
      */
-    public function validUser(){
+    public function validUser()
+    {
         $userRepo = new userRepository();
         $valid = $userRepo->updateValidUser();
     }
@@ -25,7 +25,8 @@ class AdminController
     /**
      * function valid comment
      */
-    public function validComment(){
+    public function validComment()
+    {
         $commentRepo = new commentRepository();
         $valid = $commentRepo->updateValidComment();
     }
@@ -33,10 +34,11 @@ class AdminController
     /**
      * function valid post
      */
-    public function validPost(){
+    public function validPost()
+    {
         $postRepo = new postRepository();
         $valid = $postRepo->updateValidPost();
-        if($_SESSION['reqValid']='OK'){
+        if ($_SESSION['reqValid']='OK') {
             $to = $_SESSION['email'];
             $subject = 'Votre article sur VivaInformatique';
             $message = $_SESSION['pseudo'] . ' , votre article est validé.' . "\r\n" . 'il est désormais visible sur le site VivaInformatique';
@@ -48,10 +50,10 @@ class AdminController
             // En-têtes additionnels
             $headers .= 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
             $headers .= 'From: VivaInformatique <lieninformatique9@gmail.com>';
-         //   mail($to, $subject, $message, $headers);
+            //   mail($to, $subject, $message, $headers);
         }
 
-        if($_SESSION['reqValid']='NO'){
+        if ($_SESSION['reqValid']='NO') {
             $to = $_SESSION['email'];
             $subject = 'Votre article sur VivaInformatique';
             $message = $_SESSION['pseudo'] . ' , votre article a été refusé.' . "\r\n" . 'pour plus de détail n\'hésitez pas à nous contacter';
@@ -63,16 +65,15 @@ class AdminController
             // En-têtes additionnels
             $headers .= 'To:' . $_SESSION['pseudo'] . $_SESSION['email'];
             $headers .= 'From: VivaInformatique <lieninformatique9@gmail.com>';
-         //   mail($to, $subject, $message, $headers);
+            //   mail($to, $subject, $message, $headers);
         }
     }
-
-
 
     /**
      * function display all users
      */
-    public function displayUsers(){
+    public function displayUsers()
+    {
         $userRepo= new UserRepository();
         $postRepo=new PostRepository();
         $commentRepo= new CommentRepository();
@@ -81,14 +82,12 @@ class AdminController
         $posts = $postRepo->getAllPosts();
         $comments = $commentRepo->getAllComments();
         require '../src/View/administrationView.php';
-
     }
 
-    public function displayPosts(){
+    public function displayPosts()
+    {
         $postRepo= new PostRepository();
         $posts=$postRepo->getAllPosts();
         require '../src/View/administrationView.php';
-
     }
-
 }

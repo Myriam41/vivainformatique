@@ -9,7 +9,6 @@ use App\Entity\User;
 /**
  * Class PostController
  */
-
 class PostController
 {
     /**
@@ -28,7 +27,7 @@ class PostController
      * @var $article and contents
      */
     public function post()
-    {       
+    {
         $postRepository = new PostRepository();
         $dispComment = new CommentRepository();
         $replyComment = new CommentRepository();
@@ -50,8 +49,8 @@ class PostController
     {
         $userId = $_post['userId'];
         $userRepository = new UserRepository();
-        if(!empty($userId)){
-           $author = $userRepository->getAuthor();
+        if (!empty($userId)) {
+            $author = $userRepository->getAuthor();
         }
     }
 
@@ -67,24 +66,27 @@ class PostController
     /**
      * edit post
      */
-    public function postEdit(){
-            $postRepo = new PostRepository();
-            $post = $postRepo->getOneById();
-            require '../src/View/editPostView.php';
+    public function postEdit()
+    {
+        $postRepo = new PostRepository();
+        $post = $postRepo->getOneById();
+        require '../src/View/editPostView.php';
     }
 
     /**
      * delete post
      */
-    public function postDelete(){
+    public function postDelete()
+    {
         $postDelete = new PostRepository();
         $postDelete->deletePost();
     }
 
     /**
-     * update post 
+     * update post
      */
-    public function postUpdate(){
+    public function postUpdate()
+    {
         $postUpdate = new PostRepository();
         $postUpdate->updatePost();
     }

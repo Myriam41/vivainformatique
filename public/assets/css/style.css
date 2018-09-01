@@ -46,7 +46,29 @@ h3 {
 }
 
 #mimi{
-    width: 80%;
+    width: 50%;
     height: auto;
     margin: auto;
+}
+
+#introduce{
+    border: 1px;
+    border-color: blue;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+
+.postTitle{
+    margin: auto;
+    background-color: yellowgreen;
+}
+
+#post-subtitle{
+    background-color: yellowgreen;
+}
+
+/* Default page 2 */
+.container-content{
+    margin-top: 100px;
 }

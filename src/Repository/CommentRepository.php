@@ -163,7 +163,7 @@ class CommentRepository extends Connect
         $db = $this->getDb();
 
         $reqUpdate = 'UPDATE comments';
-        $reqSet = ' SET contmessage=:contmessage';
+        $reqSet = ' SET contmessage=:contmessage, updateAt=now()';
         $reqWhere = ' WHERE id=:id';
         $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
         $req->bindParam(':id', $_SESSION['commentId'], \PDO::PARAM_INT);

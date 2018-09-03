@@ -161,10 +161,12 @@ class PostRepository extends Connect
         $db = $this->getDb();
 
         $reqUpdate = 'UPDATE post';
-        $reqSet = ' SET content=:content, updateAt=now()';
+        $reqSet = ' SET title=:title, introduction=:introduction, content=:content, updateAt=now()';
         $reqWhere = ' WHERE id=:id';
         $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
         $req->bindParam(':id', $_SESSION['postId'], \PDO::PARAM_INT);
+        $req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
+        $req->bindParam(':introduction', $_SESSION['introduction'], \PDO::PARAM_STR);
         $req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
 
         $req->execute();

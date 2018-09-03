@@ -69,6 +69,7 @@ class AdminController
         }
     }
 
+    //________________display_____________________
     /**
      * function display all users
      */
@@ -84,6 +85,9 @@ class AdminController
         require '../src/View/administrationView.php';
     }
 
+    /**
+     * function display all posts
+     */
     public function displayPosts()
     {
         $postRepo= new PostRepository();

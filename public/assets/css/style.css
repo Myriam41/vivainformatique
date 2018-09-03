@@ -60,15 +60,18 @@ h3 {
 
 
 .postTitle{
+    text-align: center;
     margin: auto;
-    background-color: yellowgreen;
+    background-color: rgb(81, 81, 228);
 }
 
-#post-subtitle{
-    background-color: yellowgreen;
+
+
+/* Default page 1 and 2 */
+#admin{
+    text-align: center;
 }
 
-/* Default page 2 */
 .container-content{
     margin-top: 100px;
 }

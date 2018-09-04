@@ -21,10 +21,10 @@
     opacity : 1;
 }
 
-.formlog{
+/*.formlog{
     margin: auto;
     background-color: aquamarine;
-}
+}*/
 
 .bloccomments{
     margin-top: 20px;
@@ -73,5 +73,5 @@ h3 {
 }
 
 .container-content{
-    margin-top: 100px;
+    margin-top: 150px;
 }

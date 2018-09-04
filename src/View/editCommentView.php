@@ -13,21 +13,19 @@ foreach ($comment as $data) {
     <div class="bloccomments">  
     <form action="index.php?page=commentEdit&id=<?=$_SESSION['commentId']; ?>" method="post" class="col-lg-10">
         <legend>Modifier mon commentaire</legend>
-        <fieldset>
-        <div class="form group">  
-            <label for "contmessage">Message : </label>
-        <textarea id="contmessage" name="contmessage" class="form-control" rows="4" cols="50">
-        <?= $data['contmessage'];
-}?>
-        </textarea> </div>
-
-        <input type="hidden" name="postId" value= $_SESSION['postId'] />
-    </br>
-        <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
-        </div>
-        </fieldset>
-        </form>
+            <fieldset>
+                <div class="form group">  
+                    <label>Message : </label>
+                    <textarea id="contmessage" name="contmessage" class="form-control" rows="4" cols="50"><?= $data['contmessage'];?></textarea>
+                </div>
+    <?php
+    }?>
+    <br/>
+                <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Envoyer</button>
+                </div>
+            </fieldset>
+    </form>
     </div>
 <?php
 

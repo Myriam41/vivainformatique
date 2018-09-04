@@ -28,7 +28,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="index.php?page=home"><img src="../img/stamp_JauBleu200.png" alt="logo Stamp Development"/></a>
+    <a class="navbar-brand" href="index.php?page=home"><img src="../img/Stamp100.png" alt="logo Stamp Development"/></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
     <!--Menu -->
@@ -103,7 +103,7 @@
           <?php 
           if ($_SESSION['status']== 1) {
             ?>
-            <a class = "admin" href="index.php?page=admin">admin</a>
+            <a class= "admin" href="index.php?page=admin">admin</a>
           <?php
           }
           ?>

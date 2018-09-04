@@ -5,8 +5,14 @@ namespace App\Repository;
 use App\Model\Connect;
 use App\Entity\Comment;
 
+/**
+ * class CommentRepository extends Connect
+ */
 class CommentRepository extends Connect
 {
+    /**
+     * function DELETE comment
+     */
     public function deleteComment()
     {
         $db = $this->getDb();
@@ -19,11 +25,14 @@ class CommentRepository extends Connect
         $req->execute();
     }
 
+    /**
+     * function SELECT one comment
+     * @return $comment
+     */
     public function getOneComment()
     {
         $db = $this->getDb();
     
-        // récupération d'un commentaire
         $reqSelect = 'SELECT *';
         $reqFrom = ' FROM comments';
         $reqWhere = ' WHERE id = :commentId';
@@ -41,6 +50,10 @@ class CommentRepository extends Connect
         $this->getReplies();
     }
 
+    /**
+     * function SELECT comments of one post
+     * @return $comments array
+     */
     public function getCommentsPost($articleId)
     {
         $db = $this->getDb();
@@ -67,6 +80,10 @@ class CommentRepository extends Connect
         $this->getReplies();
     }
 
+    /**
+     * function SELECT replies of comments one post
+     * @return $replies array
+     */
     public function getReplies()
     {
         $db = $this->getDb();
@@ -90,6 +107,10 @@ class CommentRepository extends Connect
         return $replies;
     }
     
+    /**
+     * function SELECT alls comments
+     * @return $comments
+     */
     public function getAllComments()
     {
         $db = $this->getDb();
@@ -113,7 +134,7 @@ class CommentRepository extends Connect
     }
 
     /**
-     * Function pour ajouter un article dans la bd
+     * Function INSERT TO comments
      */
     public function newComment()
     {
@@ -134,12 +155,15 @@ class CommentRepository extends Connect
         $req->execute();
     }
 
+    /**
+     * function UPDATE comment
+     */
     public function updateComment()
     {
         $db = $this->getDb();
 
         $reqUpdate = 'UPDATE comments';
-        $reqSet = ' SET contmessage=:contmessage';
+        $reqSet = ' SET contmessage=:contmessage, updateAt=now()';
         $reqWhere = ' WHERE id=:id';
         $req = $db->prepare($reqUpdate . $reqSet . $reqWhere);
         $req->bindParam(':id', $_SESSION['commentId'], \PDO::PARAM_INT);
@@ -148,6 +172,9 @@ class CommentRepository extends Connect
         $req->execute();
     }
 
+    /**
+     * function UPDATE valid comment
+     */
     public function updateValidComment()
     {
         $db = $this->getDb();

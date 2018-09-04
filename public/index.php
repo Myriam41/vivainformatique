@@ -77,7 +77,9 @@ if ($p === 'edit_post') {
 
 //update post
 if ($p === 'postEdit') {
-    $_SESSION['content']= htmlspecialchars($_POST['content'], ENT_IGNORE);
+    $_SESSION['title']= htmlentities($_POST['title'], ENT_SUBSTITUTE);
+    $_SESSION['introduction']= ($_POST['introduction']);
+    $_SESSION['content']= htmlentities($_POST['content'], ENT_SUBSTITUTE);
     $postController = new PostController();
     $postController->postUpdate();
     $postController->post();
@@ -240,6 +242,7 @@ if ($p === 'reply_comment') {
 // edit comment
 if ($p === 'edit_comment') {
     $_SESSION['commentId']= intval($_GET['id']);
+    $_SESSION['contmessage']= ($_POST['contmessage']);
     $commentController = new CommentController();
     $commentController->commentEdit();
 

@@ -6,9 +6,7 @@ use App\Model\Connect;
 
 /**
  * Class ConnectRepository extend connect
- *
  */
-
 class ConnectRepository extends Connect
 {
     /**
@@ -45,6 +43,9 @@ class ConnectRepository extends Connect
         return $isAvailable;
     }
 
+    /**
+     * function SELECT user
+     */
     public function getUser()
     {
         $db = $this->getDb();

@@ -21,10 +21,10 @@
     opacity : 1;
 }
 
-.formlog{
+/*.formlog{
     margin: auto;
     background-color: aquamarine;
-}
+}*/
 
 .bloccomments{
     margin-top: 20px;
@@ -46,7 +46,32 @@ h3 {
 }
 
 #mimi{
-    width: 80%;
+    width: 50%;
     height: auto;
     margin: auto;
+}
+
+#introduce{
+    border: 1px;
+    border-color: blue;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+
+.postTitle{
+    text-align: center;
+    margin: auto;
+    background-color: rgb(81, 81, 228);
+}
+
+
+
+/* Default page 1 and 2 */
+.admin{
+    text-align: center;
+}
+
+.container-content{
+    margin-top: 150px;
 }

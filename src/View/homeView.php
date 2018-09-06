@@ -35,8 +35,9 @@ ob_start();?>
             </div>
         </div>
         <div class = "col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center">
-            <a class="nav-link" target="_blank" href="../doc/cv 2018 informatique.pdf">Mon CV</a>
+            <p>Myriam Stampers</p>
             <img id="mimi" src="../img/myr2R.png"  alt="Photo du développeur"/>
+            <a class="nav-link" target="_blank" href="../doc/cv 2018 informatique.pdf">Mon CV</a>
             <a class="nav-link" href="index.php?page=postList">Articles</a>
         </div>
     </div>

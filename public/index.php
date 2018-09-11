@@ -77,9 +77,9 @@ if ($p === 'edit_post') {
 
 //update post
 if ($p === 'postEdit') {
-    $_SESSION['title']= htmlentities($_POST['title'], ENT_SUBSTITUTE);
-    $_SESSION['introduction']= ($_POST['introduction']);
-    $_SESSION['content']= htmlentities($_POST['content'], ENT_SUBSTITUTE);
+    $_SESSION['title']= ($_POST['title']); //ne fonctionne pas avec htmlspecialchars
+    $_SESSION['introduction']= htmlspecialchars($_POST['introduction'], ENT_IGNORE);
+    $_SESSION['content']= htmlspecialchars($_POST['content'], ENT_IGNORE);
     $postController = new PostController();
     $postController->postUpdate();
     $postController->post();

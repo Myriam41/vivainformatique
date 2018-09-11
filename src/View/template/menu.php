@@ -14,9 +14,9 @@ if ($_SESSION['connect'] === 1) {
         <li class="nav-item">
             <a class="nav-link" href="index.php?page=postList">Articles</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="index.php?page=contact">Contact</a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a class="nav-link" href="index.php?page=login">Enregistrement</a>
         </li>
@@ -42,9 +42,9 @@ else {
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=postList">Articles</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="index.php?page=contact">Contact</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=login">Connexion</a>
             </li>
